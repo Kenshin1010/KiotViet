@@ -1,0 +1,216 @@
+.new-application-container{
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.new-application-head{
+    width: 100%;
+}
+
+.new-application-heading{
+    width: 100%;
+    height: 62px;
+    background-color: #fff;
+    border-start-start-radius: 4px;
+    border-start-end-radius: 4px;
+}
+
+.new-application-head-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new-application-heading .span-heading{
+    width: 1094px;
+    margin-left: auto;
+    color: #313131;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.new-application-heading i{
+    font-size: 16px;
+    color: #959595;
+    padding: 16px;
+}
+
+/* new application form container */
+.new-application-form-container{
+    width: 1114px;
+    padding: 28px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f2f2f2;
+}
+
+/* new application name */
+.new-application-name{
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px solid rgba(0,0,0,.8);
+    border-radius: 4px;
+}
+
+.new-application-name label{
+    min-width: 130px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #15171a;
+    padding-top: 7px;
+    padding-right: 5px;
+    line-height: 18px;
+}
+
+.new-application-name input{
+    padding: 7px 0;
+    line-height: 18px;
+    font-size: 14px;
+    min-width: 320px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.new-application-name input:focus{
+    border-bottom: 2px solid #00b63e;
+}
+
+/* new application form group */
+.new-application-form-group{
+}
+
+/* new application form */
+.new-application-form{
+    background-color: #fff;
+    box-shadow: 2px 2px 4px solid rgba(0,0,0,.8);
+    border-radius: 4px;
+    padding: 12px 0;
+    margin-bottom: 20px;
+}
+
+/* new application content */
+.new-application-content{
+}
+
+.new-application-toggle{
+    width: 1060px;
+    height: 52px;
+    padding: 12px 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new-application-toggle label{
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 130px;
+    padding: 7px 5px 0 10px;
+    line-height: 32px;
+}
+
+/* table-set-salary-application */
+.btn-toggle-salary{
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50%;
+    border: none;
+    background-color: #d4d4d4;
+    color: #15171a;
+    cursor: pointer;
+}
+
+/* table new application */
+.table-application-container{
+    width: 1060px;
+    padding: 0 15px;
+    font-size: 13px;
+    color: #15171a;
+    table-layout: auto;
+    display: none;
+}
+
+.table-application {
+    width: 100%;
+    margin: 0;
+    max-width: none;
+    border-collapse: separate;
+    border-spacing: 0;
+    empty-cells: show;
+    border-width: 0;
+    outline: 0;
+}
+
+.form-label-select .form-select{
+    padding-right: 100px;
+}
+
+.form-label-select .form-select:focus{
+    border-bottom: 1px solid #00b63e;
+}
+
+.form-label-icon .form-select:focus{
+    border-bottom: 1px solid #00b63e;
+}
+
+.table-type-application label{
+    display: none;
+}
+
+.table-application-toggle{
+    padding: 10px 0;
+}
+
+.table-row-data-application td span{
+    padding: 7px 10px 7px 0;
+}
+
+.table-icon-add-remove{
+    text-align: right;
+}
+
+.table-icon-add-remove i:last-child{
+    margin-left: 10px;
+}
+
+/* add condition button */
+.add-condition{
+    border-top: 1px solid #ddd;
+}
+
+.btn-condition{
+    padding: 7px 20px;
+    line-height: 18px;
+    font-size: 13px;
+    color: #121212;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-condition span{
+    margin-left: 10px;
+}
+
+/* new application reward content */
+.new-application-reward-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reward-pay{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}

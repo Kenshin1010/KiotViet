@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KiotViet - Kiểm kho</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+    <link rel="icon" href="./assets/img/favicon.png" fetchpriority="high" />
+    <!-- Thêm link tới thư viện JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/272317828a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/select_number_of_records_product.js"></script>
+    <script src="./assets/js/to_top.js"></script>
+    <script src="./assets/js/creatId.js"></script>
+    <script src="./assets/js/search_input.js"></script>
+    <script src="./assets/js/toggle_list_display.js"></script>
+    <script src="./assets/js/btn_show_div.js"></script>
+    <script src="./assets/js/btn_show_div_id.js"></script>
+    <script src="./assets/js/btn_close.js"></script>
+    <script src="./assets/js/toast.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/stock_takes.css" />
+    <link rel="stylesheet" href="./assets/css/check_box.css" />
+    <link rel="stylesheet" href="./assets/css/add_product.css" />
+    <link rel="stylesheet" href="./assets/css/detail_product.css" />
+    <link rel="stylesheet" href="./assets/css/add_new_application_form.css" />
+    <link rel="stylesheet" href="./assets/css/product.css" />
+  </head>
+
+  <body>
+    <!-- main header -->
+    <header id="mainHeader"></header>
+    <script src="./assets/js/main_header.js"></script>
+
+    <!-- section product -->
+    <section class="product" id="sectionProduct">
+      <div class="container">
+        <div class="product-main-body">
+          <!-- body left -->
+          <div class="product-main-left">
+            <div class="em-left-header">
+              <h1 class="em-left-heading">Phiếu kiểm kho</h1>
+            </div>
+
+            <!-- estimated-OOS-date -->
+            <div class="em-left-content content-estimated-OOS-date">
+              <div class="em-left-content-title">
+                <h3
+                  for="estimatedOOSDateStatus"
+                  class="em-left-content-heading"
+                >
+                  Thời gian
+                </h3>
+                <input id="estimatedOOSDateStatus" type="text" />
+
+                <div class="em-left-content-icon icon-estimated-OOS-date">
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddestimated-OOS-date"
+                  ></i>
+                </div>
+              </div>
+
+              <div
+                class="form-group left-content-group-radio estimated-OOS-date-group-radio"
+              >
+                <div class="form-wrap form-wrap-radio">
+                  <label
+                    for="estimatedOSSDateSaleActiveAllTime"
+                    class="label-status"
+                  >
+                    <input
+                      type="radio"
+                      name="isActiveOOSDate"
+                      id="estimatedOSSDateSaleActiveAllTime"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content">Tháng này</span>
+                  </label>
+                  <label
+                    for="estimatedOSSDateSaleActiveAnotherChoice"
+                    class="label-status"
+                  >
+                    <input
+                      type="radio"
+                      name="isActiveOOSDate"
+                      id="estimatedOSSDateSaleActiveAnotherChoice"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content">Lựa chọn khác</span>
+                    <!-- <input type="date" name="" id=""> -->
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- product-type -->
+            <div class="em-left-content content-product-type">
+              <div class="em-left-content-title">
+                <h3 class="em-left-content-heading">Trạng thái</h3>
+                <div class="em-left-content-icon icon-product-type">
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddproduct-type"
+                  ></i>
+                </div>
+              </div>
+              <div class="product-type-group-check">
+                <label class="container-check-box check-box-menu-type"
+                  >Phiếu tạm
+                  <input
+                    id="containerCheckBoxCommodityProduct"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+
+                <label class="container-check-box check-box-menu-type"
+                  >Đã cân bằng kho
+                  <input
+                    id="containerCheckBoxServiceProduct"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+
+                <label class="container-check-box check-box-menu-type"
+                  >Đã hủy
+                  <input
+                    id="containerCheckBoxComboPackaging"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <script src="./assets/js/check_tr_product_service_combo.js"></script>
+            </div>
+
+            <!-- trademark -->
+            <div class="em-left-content content-trademark">
+              <div class="em-left-content-title">
+                <h3 class="em-left-content-heading">Người tạo</h3>
+                <div class="em-left-content-icon icon-trademark">
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddTrademark"
+                  ></i>
+                </div>
+              </div>
+
+              <div class="trademark-list">
+                <input
+                  type="search"
+                  id="trademarkListSearch"
+                  class="hide-show-trademark"
+                  placeholder="Chọn người tạo"
+                />
+                <div id="trademarkListId" class="trademark-list-items">
+                  <ul class="form-items">
+                    <li class="form-item">
+                      <span class="item-name trademark-name">NV000001</span>
+                      <i id="showEdittrademark" class="fas fa-solid fa-pen"></i>
+                    </li>
+
+                    <li class="form-item">
+                      <span class="item-name trademark-name">NV000002</span>
+                      <i class="fas fa-solid fa-pen"></i>
+                    </li>
+                  </ul>
+
+                  <script src="./assets/js/search_input.js"></script>
+                  <script src="./assets/js/toggle_list_display.js"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                      toggleListDisplay(
+                        "trademarkListSearch",
+                        "trademarkListId",
+                        ".trademark-name"
+                      );
+                    });
+                  </script>
+                </div>
+                <script src="./assets/js/search_input.js">
+                  document.addEventListener("DOMContentLoaded", function () {
+                      searchtrademark("trademarkListSearch", "trademarkListId");
+                  });
+                </script>
+                <!-- <script src="./assets/js/search_trademark_table.js"></script> -->
+
+                <!-- add-new-trademark -->
+                <!-- <div class="add-new-trademark" id="addNewtrademarkForm">
+      <div class="mask mask-trademark">
+        <div class="add-new-trademark-container">
+          <div class="add-trademark-title">
+            <span class="new-trademark-title">Thêm mới nhà cung cấp</span>
+            <i id="closeCreattrademark" class="form-close-icon fas fa-solid fa-close"></i>
+            <script src="./assets/js/btn_close.js"></script>
+            <script>
+              document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+                  closeButton(
+                    "closeCreattrademark",
+                    ".add-new-trademark"
+                  );
+                }
+              );
+            </script>
+          </div>
+
+          <div class="add-trademark-body">
+            <div class="form-group group-trademark-location">
+              <label for="trademarkName">Tên nhà cung cấp</label>
+              <div class="form-wrap">
+                <input type="text" id="trademarkName" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group group-trademark-location">
+              <label for="trademarkDesc">Mô tả</label>
+              <div class="form-wrap trademark-area-input">
+                <i class="trademark-icon-inside fas fa-solid fa-pen"></i>
+                <textarea id="trademarkDesc" class="form-control" rows="1"></textarea>
+              </div>
+            </div>
+            <div class="form-group group-trademark-location">
+              <label for="trademarkActive trademarkInactive">Trạng thái</label>
+              <input type="text" id="trademarkStatus" />
+              <div class="form-wrap">
+                <label for="trademarkActive" class="label-status">
+                  <input type="radio" name="isActivetrademark" id="trademarkActive" class="form-control-radio"
+                    value="true" checked />
+                  <span>Hoạt động</span>
+                </label>
+                <label for="trademarkInactive" class="label-status">
+                  <input type="radio" name="isActivetrademark" id="trademarkInactive"
+                    class="form-control-radio" value="false" />
+                  <span>Ngừng hoạt động</span>
+                </label>
+              </div>
+            </div> -->
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+              <button class="btn btn-success btn-success-bottom" id="btnSavetrademark">
+                <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                <span>Lưu</span>
+              </button>
+              <script src="./assets/js/toast.js"></script>
+              <script src="./assets/js/creat_trademark.js"></script>
+              <script src="./assets/js/add_local_storage_trademark.js"></script>
+              <script src="./assets/js/show_list_trademark.js"></script>
+
+              <button id="cancelCreattrademark" class="btn btn-default btn-default-bottom">
+                <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                <span>Bỏ qua</span>
+              </button>
+              <script src="./assets/js/btn_close.js"></script>
+              <script>
+                document.addEventListener(
+                  "DOMContentLoaded",
+                  function () {
+                    closeButton(
+                      "cancelCreattrademark",
+                      ".add-new-trademark"
+                    );
+                  }
+                );
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+                <!-- add-edit-trademark -->
+                <!-- <div class="add-edit-trademark">
+      <div class="mask mask-trademark">
+        <div class="add-edit-trademark-container">
+          <div class="add-trademark-title">
+            <span class="edit-trademark-title">Cập nhật nhà cung cấp</span>
+            <i id="closeEdittrademark" class="form-close-icon fas fa-solid fa-close"></i>
+          </div>
+
+          <div class="add-trademark-body">
+            <div class="form-group">
+              <label for="trademarkNameEdit">Tên nhà cung cấp</label>
+              <div class="form-wrap">
+                <input type="text" id="trademarkNameEdit" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trademarkDescEdit">Mô tả</label>
+              <div class="form-wrap trademark-area-input">
+                <i class="trademark-icon-inside fas fa-solid fa-pen"></i>
+                <textarea id="trademarkDescEdit" class="form-control" rows="1"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trademarkStatusEdit">Trạng thái</label>
+              <input type="text" name="" id="trademarkStatusEdit" />
+              <div class="form-wrap">
+                <label for="trademarkActiveEdit" class="label-status">
+                  <input type="radio" name="isActivetrademarkEdit" id="trademarkActiveEdit"
+                    class="form-control-radio" value="true" />
+                  <span>Hoạt động</span>
+                </label>
+                <label for="trademarkInactiveEdit" class="label-status">
+                  <input type="radio" name="isActivetrademarkEdit" id="trademarkInactiveEdit"
+                    class="form-control-radio" value="false" />
+                  <span>Ngừng hoạt động</span>
+                </label>
+              </div>
+            </div>
+            <script src="./assets/js/btn_close.js"></script>
+            <script>
+              document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+                  closeButton(
+                    "closeEdittrademark",
+                    ".add-edit-trademark"
+                  );
+                }
+              );
+            </script> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+              <button class="btn btn-success btn-success-bottom" id="btnSavetrademarkEdit">
+                <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                <span>Lưu</span>
+              </button>
+              <button id="cancelEdittrademark" class="btn btn-default btn-default-bottom">
+                <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                <span>Bỏ qua</span>
+              </button>
+              <script src="./assets/js/btn_close.js"></script>
+              <script>
+                document.addEventListener(
+                  "DOMContentLoaded",
+                  function () {
+                    closeButton(
+                      "cancelEdittrademark",
+                      ".add-edit-trademark"
+                    );
+                  }
+                );
+              </script>
+              <button id="showRemovetrademark" class="btn btn-red btn-red-bottom">
+                <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                <span>Xóa</span>
+              </button>
+              <script src="./assets/js/btn_show_div.js"></script>
+              <script>
+                document.addEventListener(
+                  "DOMContentLoaded",
+                  function () {
+                    showDiv(
+                      "showRemovetrademark",
+                      ".add-remove-trademark"
+                    );
+                  }
+                );
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/js/edit_remove_trademark.js"></script> -->
+
+                <!-- add-remove-trademark -->
+                <!-- <div class="add-remove-trademark">
+      <div class="mask mask-trademark">
+        <div class="add-remove-trademark-container">
+          <div class="add-trademark-title">
+            <span class="remove-trademark-title">Xác nhận</span>
+            <i id="closeRemovetrademark" class="form-close-icon fas fa-solid fa-close"></i>
+            <script src="./assets/js/btn_close.js"></script>
+            <script>
+              document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+                  closeButton(
+                    "closeRemovetrademark",
+                    ".add-remove-trademark"
+                  );
+                }
+              );
+            </script>
+          </div>
+
+          <div class="add-trademark-body">
+            <div class="form-group">
+              <p>
+                Hệ thống sẽ xóa hoàn toàn
+                <span>nhà cung cấp</span> này. Bạn có chắc chắn?
+              </p>
+            </div> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+              <button class="btn btn-success btn-success-bottom" id="accepttrademarkRemove">
+                <i class="btn-success-icon fas fa-solid fa-check"></i>
+                <span>Đồng ý</span>
+              </button>
+              <button id="cancelRemovetrademark" class="btn btn-default btn-default-bottom">
+                <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                <span>Bỏ qua</span>
+                <script src="./assets/js/btn_close.js"></script>
+                <script>
+                  document.addEventListener(
+                    "DOMContentLoaded",
+                    function () {
+                      closeButton(
+                        "cancelRemovetrademark",
+                        ".add-remove-trademark"
+                      );
+                    }
+                  );
+                </script>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+              </div>
+            </div>
+            <script src="./assets/js/btn_toggle_rotate.js"></script>
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                toggleButtonDivContent(
+                  "hideAddTrademark",
+                  ".hide-show-trademark",
+                  ".icon-trademark"
+                );
+              });
+            </script>
+
+            <!-- aside -->
+            <aside class="em-left-pageside">
+              <label for="numberOfRecordsStockTakes">Số bản ghi:</label>
+              <select
+                class="number-of-records"
+                id="numberOfRecordsStockTakes"
+                name="Số bản ghi:"
+              >
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </aside>
+          </div>
+
+          <!-- body right -->
+          <div class="product-main-right">
+            <div class="product-right-header">
+              <!-- header filter search -->
+              <div class="header-filter-search">
+                <div
+                  class="input-group input-group-search-product-code"
+                  id="groupInputSearchStockTakeCode"
+                >
+                  <i
+                    class="input-group-icon fas fa-solid fa-magnifying-glass"
+                  ></i>
+                  <input
+                    type="text"
+                    name=""
+                    id="searchCodeNameStockTake"
+                    class="form-control"
+                    placeholder="Tìm mã phiếu kiểm"
+                  />
+                  <i class="input-group-icon fas fa-solid fa-caret-down"></i>
+                  <script src="./assets/js/search_product_code_name.js"></script>
+                </div>
+
+                <div class="choosed-items">
+                  <div class="choosed-number">
+                    <span>Đã chọn</span>
+                    <div id="selectedCountProduct"></div>
+                  </div>
+                  <i
+                    class="btn-icon fas fa-solid fa-times"
+                    id="btnIconCloseProduct"
+                  ></i>
+                </div>
+              </div>
+
+              <!-- header filter buttons -->
+              <div class="header-filter-buttons">
+                <ul class="header-filter-button-items">
+                  <li
+                    class="header-filter-button-item"
+                    id="showBtnOperationProduct"
+                  >
+                    <button class="btn-success">
+                      <i class="btn-icon fas fa-solid fa-file"></i>
+                      <span>Gộp phiếu</span>
+                      <span></span>
+                    </button>
+                  </li>
+
+                  <li
+                    class="header-filter-button-item"
+                    id="addMoreProductButton"
+                  >
+                    <button class="btn-success">
+                      <i class="btn-icon fas fa-solid fa-plus"></i>
+                      <span>Kiểm kho</span>
+                      <span></span>
+                      <i class="btn-icon fas fa-solid fa-caret-down"></i>
+                    </button>
+                  </li>
+
+                  <li class="header-filter-button-item">
+                    <button class="btn-success" id="" data-action="exportFile">
+                      <i class="btn-icon fas fa-solid fa-file-export"></i>
+                      <span>Xuất file</span>
+                    </button>
+                  </li>
+
+                  <li class="header-filter-button-item">
+                    <button class="btn-success k-link">
+                      <i class="btn-icon fas fa-solid fa-list"></i>
+                      <span></span>
+                      <i class="btn-icon fas fa-solid fa-caret-down"></i>
+                    </button>
+                    <ul class="">
+                      <li class="">
+                        <div
+                          class="animation-container animation-container-product"
+                          id="animationContainerStockTakes"
+                        >
+                        <label class="container-check-box check-box-menu"
+                            >Mã kiểm kho
+                            <input
+                              id="containerCheckBoxInventoryCode"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Thời gian
+                            <input
+                              id="containerCheckBoxInventoryTime"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Người tạo
+                            <input
+                              id="containerCheckBoxInventoryCreator"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Người cân bằng
+                            <input
+                              id="containerCheckBoxInventoryBalancedPerson"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Ngày cân bằng
+                            <input
+                              id="containerCheckBoxInventoryBalanceDay"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >SL thực tế
+                            <input
+                              id="containerCheckBoxInventoryActualQuantity"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tổng thực tế
+                            <input
+                              id="containerCheckBoxInventoryActualTotal"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tổng chênh lệch
+                            <input
+                              id="containerCheckBoxTotalDifference"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tổng giá trị lệch
+                            <input
+                              id="containerCheckBoxTotalDeviationValue"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >SL lệch tăng
+                            <input
+                              id="containerCheckBoxDeviationIncrease"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tổng giá trị tăng
+                            <input
+                              id="containerCheckBoxTotalValueIncreased"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >SL lệch giảm
+                            <input
+                              id="containerCheckBoxDeviationReduced"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tổng giá trị giảm
+                            <input
+                              id="containerCheckBoxTotalValueDecreased"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Ghi chú
+                            <input
+                              id="containerCheckBoxInventoryNote"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Trạng thái
+                            <input
+                              id="containerCheckBoxInventoryStatus"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+                    <script src="./assets/js/hide_show_table.js"></script>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- table products -->
+            <div class="table-container">
+              <table class="product-table-list">
+                <thead class="table-header">
+                  <tr class="table-row-header">
+                    <th id="cellCheckAllProduct">
+                      <label class="container-check-box">
+                        <input
+                          class="check-all"
+                          id="checkAllProduct"
+                          type="checkbox"
+                        />
+                        <span class="checkmark"></span>
+                      </label>
+                    </th>
+                    <th
+                      class="inventory-code"
+                      for="containerCheckBoxInventoryCode"
+                    >
+                      Mã kiểm kho
+                    </th>
+                    <th class="inventory-time" for="containerCheckBoxInventoryTime">
+                        Thời gian
+                    </th>
+                    <th class="inventory-creator" for="containerCheckBoxInventoryCreator">
+                        Người tạo
+                    </th>
+                    <th class="balanced-person" for="containerCheckBoxInventoryBalancedPerson">
+                        Người cân bằng
+                    </th>
+                    <th
+                      class="balance-day"
+                      for="containerCheckBoxInventoryBalanceDay"
+                    >
+                    Ngày cân bằng
+                    </th>
+                    <th class="actual-quantity" for="containerCheckBoxInventoryActualQuantity">
+                        SL thực tế
+                    </th>
+                    <th
+                      class="actual-total"
+                      for="containerCheckBoxInventoryActualTotal"
+                    >
+                    Tổng thực tế
+                    </th>
+                    <th
+                      class="total-difference"
+                      for="containerCheckBoxTotalDifference"
+                    >
+                    Tổng chênh lệch
+                    </th>
+                    <th class="total-deviantion-value" for="containerCheckBoxTotalDeviationValue">
+                        Tổng giá trị lệch
+                    </th>
+                    <th class="deviation-increase" for="containerCheckBoxDeviationIncrease">
+                        SL lệch tăng
+                    </th>
+                    <th class="total-value-increased" for="containerCheckBoxTotalValueIncreased">
+                        Tổng giá trị tăng
+                    </th>
+                    <th class="deviation-reduced" for="containerCheckBoxDeviationReduced">
+                        SL lệch giảm
+                    </th>
+                    <th
+                      class="total-value-decreased"
+                      for="containerCheckBoxTotalValueDecreased"
+                    >
+                      Tổng giá trị giảm
+                    </th>
+                    <th class="inventory-note" for="containerCheckBoxInventoryNote">
+                        Ghi chú
+                    </th>
+
+                    <th
+                      id="inventoryStatus"
+                      class="inventory-status"
+                      for="containerCheckBoxInventoryStatus"
+                    >
+                      Trạng thái
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="stockTakeListId" class="table-body"></tbody>
+                <script src="./assets/js/btn_show_div.js"></script>
+                <script src="./assets/js/creat_product.js"></script>
+                <script src="./assets/js/check_HTML_tags.js"></script>
+                <script src="./assets/js/show_list_stock_take.js"></script>
+              </table>
+              <script src="./assets/js/cell_check_product.js"></script>
+            </div>
+
+            <!-- add-remove-product -->
+            <div class="add-remove-product remove-box">
+              <div class="mask mask-remove">
+                <div class="remove-product-container remove-container">
+                  <div class="add-remove-title">
+                    <span id="titleRemoveProduct" class="remove-title"></span>
+                    <i
+                      id="closeRemoveProduct"
+                      class="close-icon fas fa-solid fa-close"
+                    ></i>
+                  </div>
+                  <div class="add-remove-body">
+                    <div class="form-group">
+                      <p>
+                        Hệ thống sẽ <b>xóa hoàn toàn</b>
+                        <span id="contentRemoveProduct"></span> này. Bạn có chắc
+                        chắn muốn xóa?
+                      </p>
+                    </div>
+
+                    <!-- add btn bottom -->
+                    <div class="add-btn-bottom comfirmation-remove-product">
+                      <button
+                        class="btn btn-success btn-success-bottom"
+                        id="acceptProductRemove"
+                      >
+                        <i class="btn-success-icon fas fa-solid fa-check"></i>
+                        <span>Đồng ý</span>
+                      </button>
+                      <button
+                        id="cancelRemoveProduct"
+                        class="btn btn-default btn-default-bottom"
+                      >
+                        <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                        <span>Bỏ qua</span>
+                      </button>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeRemoveProduct",
+                              ".add-remove-product"
+                            );
+
+                            closeButton(
+                              "cancelRemoveProduct",
+                              ".add-remove-product"
+                            );
+                          }
+                        );
+                      </script>
+                      <script src="./assets/js/btn_show_div.js"></script>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script src="./assets/js/remove_product_commodity.js"></script>
+                      <script src="./assets/js/remove_product_service.js"></script>
+                      <script src="./assets/js/remove_product_combo.js"></script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./assets/js/toast.js"></script>
+    <script src="./assets/js/format_number_input.js"></script>
+    <script src="./assets/js/creat_product.js"></script>
+    <script src="./assets/js/validation_product.js"></script>
+    <script src="./assets/js/validation_is_exists.js"></script>
+    <script src="./assets/js/validation_is_exists_add_product.js"></script>
+    <script src="./assets/js/validation_is_exists_edit_product.js"></script>
+    <script src="./assets/js/btn_close_id.js"></script>
+    <script src="./assets/js/add_local_storage_product_commodity.js"></script>
+    <script src="./assets/js/add_local_storage_product_service.js"></script>
+    <script src="./assets/js/add_local_storage_product_combo.js"></script>
+    <script src="./assets/js/edit_product_clear_data.js"></script>
+    <script src="./assets/js/edit_product_commodity.js"></script>
+    <script src="./assets/js/edit_product_service.js"></script>
+    <script src="./assets/js/edit_product_combo.js"></script>
+    <script src="./assets/js/img_product_zoom.js"></script>
+
+    <script src="./assets/js/sort_content_table_product.js"></script>
+    <script src="./assets/js/to_top.js"></script>
+    <script src="./assets/js/select_number_of_records_stock_takes.js"></script>
+
+    <div id="toast"></div>
+    <script src="./assets/js/toast.js"></script>
+  </body>
+</html>

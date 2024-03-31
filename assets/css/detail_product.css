@@ -1,0 +1,196 @@
+/* detail product */
+.detail-product, .ingredient-product {
+    width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+  }
+  
+  .detail-product-container, .ingredient-product-container {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0 28px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  /* detail-inventory-levels */
+  .detail-group-form-product, .ingredient-group-form-product{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+  }
+
+  .form-group.form-detail-inventory-add-product,
+  .form-group.form-detail-description-add-product,
+  .form-group.form-detail-notes-add-product,
+  .form-group.form-group form-ingredient-add-product{
+    width: 100%;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.form-title-inventory,
+.form-title-description,
+.form-title-notes{
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  padding: 6px 15px;
+  background-color: #f0f1f3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-wrapper.form-wrapper-detail-inventory{
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-wrapper-detail-inventory{
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-wrap-product-detail-inventory{
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label-wrap-detail-inventory{
+  min-width: 90px;
+}
+
+.form-control-inventory-levels-detail{
+  flex: 1;
+  padding-top: 7px;
+  line-height: 18px;
+  font-size: 14px;
+  min-width: 315px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#minInventory, #maxInventory{
+  text-align: right;
+}
+
+#productDesc, #noteFormInvoiceOrder{
+  width: 862px;
+  height: 120px;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+}
+
+/* hide spinner for input number */
+  .hide-spinner::-webkit-inner-spin-button,
+  .hide-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* hide space after button input */
+  }
+  
+  .ingredient-product{
+    display: none;
+  }
+  
+  /* ingredient product */
+  .form-wrapper.form-wrapper-ingredient{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-wrapper-ingredient{
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-wrap-product-ingredient{
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+  }
+  
+  .form-label-wrap-ingredient{
+    flex: 0 0 33.3333%;
+    min-width: 130px;
+    font-weight: 600;
+    padding-top: 7px;
+  }
+
+  .form-group.form-group-product-ingredient{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+  }
+
+  .form-label-icon-ingredient{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+  }
+
+  .ingredient-search-icon{
+    position: absolute;
+  }
+  
+  .form-control.form-control-ingredient{
+    flex: 1;
+    padding: 7px 25px;
+    line-height: 18px;
+    font-size: 14px;
+    min-width: 400px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .desc-italic{
+    color: #959595;
+    margin-top: 8px;
+    font-size: 13px;
+  }

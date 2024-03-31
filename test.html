@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+    <link rel="icon" href="./assets/img/favicon.png" fetchpriority="high" />
+    <script
+      src="https://kit.fontawesome.com/272317828a.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./assets/css/test.css" />
+  </head>
+
+  <body>
+    <div class="header-filter-search">
+      <kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope"
+        ><a href="javascript:void(0);" class="mobileIcon"></a
+      ></kv-mobile-new>
+      <div class="input-group focus">
+        <input
+          type="text"
+          kv-filter-search=""
+          ng-model="filterQuickSearch"
+          placeholder="Theo mã, tên hàng"
+          class="form-control input-focus ng-pristine ng-valid ng-touched ng-empty"
+          id="inputQuickSearch"
+          ng-enter="quickSearch(true)"
+          ng-show="isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch"
+          ng-change="changeQuickSearch()"
+        />
+        <div
+          id="divSuggestProductForQuickSearchProduct"
+          ng-style="{'flex': '1 1 auto', 'padding-left': '2.9rem'}"
+          ng-show="!(isOpenDropdownSearch || !isSuggestProductForSearchProduct || isCombineSearch)"
+          style="flex: 1 1 auto; padding-left: 2.9rem"
+          class="ng-hide"
+        ></div>
+        <div
+          id="idDropdownSearch"
+          class="input-group-append dropdown open"
+          uib-dropdown=""
+          auto-close="disabled"
+          is-open="isOpenDropdownSearch"
+          kv-input-focus=""
+        >
+          <!-- ngIf: filterQuickSearch && filterQuickSearch.length > 0 -->
+          <button
+            type="button"
+            id="idDropdownBtnSearch"
+            class="btn-icon dropdown-toggle"
+            uib-dropdown-toggle=""
+            aria-haspopup="true"
+            aria-expanded="true"
+          >
+            <i class="fas fa-caret-down"></i>
+          </button>
+          <div
+            id="idDropdownMenuSearch"
+            class="dropdown-content dropdown-menu"
+            uib-dropdown-menu=""
+          >
+            <div
+              class="form-group ng-hide"
+              ng-show="!isSuggestProductForSearchProduct"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterProduct"
+                placeholder="Theo mã, tên hàng"
+              />
+            </div>
+            <div
+              class="form-group"
+              ng-show="isSuggestProductForSearchProduct"
+              id="divSuggestProductForSearchProduct"
+            >
+              <kv-multi-select-search-product
+                control-css-id="suggestProductSearch"
+                control-css-class="form-control kv-multi-select-search"
+                icon-remove-css-class="icon-remove-search-product"
+                filter-ids="filterProductIds"
+                filter-keyword="filterProductKey"
+                filter-text="filterProductCodes"
+                on-type="quickSearch()"
+                is-show-on-hand="true"
+                is-show-all-item="false"
+                id="filterMultiSelect"
+                ng-enter="quickSearchEmpty()"
+                class="ng-isolate-scope"
+                ><kv-multi-select-search
+                  control-css-id="suggestProductSearch"
+                  control-css-class="form-control kv-multi-select-search"
+                  icon-remove-css-class="icon-remove-search-product"
+                  input-placeholder="Theo mã, tên hàng"
+                  option-data-text-field="Code"
+                  option-data-value-field="Id"
+                  option-item-template="itemTemplate"
+                  option-data-source="products"
+                  filter-ids="filterIds"
+                  filter-keyword="filterKeyword"
+                  filter-text="filterText"
+                  limit-filter-ids="10"
+                  message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa"
+                  on-type="onType()"
+                  field-compare-get-first-by-enter="Code"
+                  class="ng-isolate-scope"
+                >
+                  <div
+                    class="k-widget k-multiselect k-header form-control kv-multi-select-search"
+                    unselectable="on"
+                    title=""
+                    style=""
+                  >
+                    <div
+                      class="k-multiselect-wrap k-floatwrap"
+                      unselectable="on"
+                    >
+                      <ul
+                        role="listbox"
+                        unselectable="on"
+                        class="k-reset"
+                        id="suggestProductSearch_taglist"
+                      ></ul>
+                      <input
+                        class="k-input k-readonly multi-search-product"
+                        style="width: 25px"
+                        accesskey=""
+                        autocomplete="off"
+                        role="listbox"
+                        aria-expanded="false"
+                        tabindex="0"
+                        aria-owns="suggestProductSearch_taglist suggestProductSearch_listbox"
+                        aria-disabled="false"
+                        aria-readonly="false"
+                        placeholder="Theo mã, tên hàng"
+                        aria-busy="false"
+                      /><span class="k-icon k-loading k-loading-hidden"></span>
+                    </div>
+                    <select
+                      id="suggestProductSearch"
+                      class="form-control kv-multi-select-search"
+                      data-role="multiselect"
+                      multiple="multiple"
+                      style="display: none"
+                      aria-disabled="false"
+                      aria-readonly="false"
+                    ></select
+                    ><span
+                      style="
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 13px;
+                        font-stretch: 100%;
+                        font-style: normal;
+                        font-weight: 400;
+                        letter-spacing: normal;
+                        text-transform: none;
+                        line-height: 32px;
+                        position: absolute;
+                        visibility: hidden;
+                        top: -3333px;
+                        left: -3333px;
+                      "
+                    ></span>
+                  </div> </kv-multi-select-search
+              ></kv-multi-select-search-product>
+            </div>
+            <div
+              class="form-group ng-hide"
+              ng-show="retailer.isActiveGppDrugStore"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterMedicineRegistrationNo"
+                placeholder="Theo số đăng ký"
+                kv-select-text=""
+              />
+            </div>
+            <div class="form-group ng-hide" ng-show="appSetting.UseImei">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterSerialKey"
+                placeholder="Theo Serial/IMEI"
+                kv-select-text=""
+              />
+            </div>
+            <div class="form-group ng-hide" ng-show="appSetting.UseBatchExpire">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterBatchExpire"
+                placeholder="Theo lô, hạn sử dụng"
+                kv-select-text=""
+              />
+            </div>
+            <div class="form-group">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-valid ng-touched ng-dirty ng-empty"
+                type="text"
+                ng-model="filterDescriptionAndOrderTemplate"
+                placeholder="Theo ghi chú, mô tả đặt hàng"
+                kv-select-text=""
+              />
+            </div>
+            <div
+              class="form-group ng-hide"
+              ng-show="retailer.isActiveGppDrugStore"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterActiveElementOrContent"
+                placeholder="Theo hoạt chất, hàm lượng"
+                kv-select-text=""
+              />
+            </div>
+            <div
+              class="form-group ng-hide"
+              ng-show="retailer.isActiveGppDrugStore"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterManufacturerNameKey"
+                placeholder="Theo hãng sản xuất"
+                kv-select-text=""
+              />
+            </div>
+            <div class="kv-window-footer">
+              <button
+                type="button"
+                class="btn btn-success ng-binding"
+                ng-click="quickSearch()"
+              >
+                <i class="far fa-search"></i>Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ngIf: selectedProduct.length > 0 -->
+      <div
+        class="choosed-items ng-binding ng-scope"
+        ng-if="selectedProduct.length > 0"
+      >
+        Đã chọn
+        <a
+          href="javascript:void(0);"
+          ng-click="openSelectedProducts()"
+          kv-btn-scroll=""
+          class="ng-binding"
+          >10</a
+        >
+        <a
+          href="javascript:void(0);"
+          ng-click="removeAllSelected()"
+          class="btn-icon"
+          ><i class="fal fa-times"></i
+        ></a>
+      </div>
+      <!-- end ngIf: selectedProduct.length > 0 -->
+    </div>
+
+    <div class="header-filter-search">
+      <kv-mobile-new on-click-call-back="refresh()" class="ng-isolate-scope"
+        ><a href="javascript:void(0);" class="mobileIcon"></a
+      ></kv-mobile-new>
+      <div class="input-group">
+        <input
+          ng-enter="quickSearch(true)"
+          ng-change="changeQuickSearch()"
+          kv-filter-search=""
+          class="form-control input-focus ng-pristine ng-valid ng-empty ng-touched"
+          type="text"
+          ng-model="filterQuickSearch"
+          placeholder="Theo mã phiếu kiểm"
+        />
+        <div
+          id="idDropdownSearch"
+          class="input-group-append dropdown open"
+          uib-dropdown=""
+          auto-close="disabled"
+          is-open="isOpenDropdownSearch"
+          kv-input-focus=""
+        >
+          <!-- ngIf: filterQuickSearch && filterQuickSearch.length > 0 -->
+          <button
+            type="button"
+            id="idDropdownBtnSearch"
+            class="btn-icon dropdown-toggle"
+            uib-dropdown-toggle=""
+            aria-haspopup="true"
+            aria-expanded="true"
+          >
+            <i class="fas fa-caret-down"></i>
+          </button>
+          <div
+            id="idDropdownMenuSearch"
+            class="dropdown-content dropdown-menu"
+            uib-dropdown-menu=""
+          >
+            <div class="form-group">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                type="text"
+                ng-model="keywordParam"
+                placeholder="Theo mã phiếu kiểm"
+              />
+            </div>
+            <div
+              class="form-group"
+              ng-show="isSuggestProductForSearchStockTake"
+            >
+              <kv-multi-select-search-product
+                control-css-id="suggestProductSearch"
+                control-css-class="form-control kv-multi-select-search"
+                icon-remove-css-class="icon-remove-search-product"
+                filter-ids="filterProductIds"
+                filter-keyword="filterProductKey"
+                filter-text="filterProductCodes"
+                on-type="quickSearch()"
+                check-permission-onhand="true"
+                id="stockTakeFilterMultiSelect"
+                class="ng-isolate-scope"
+                ><kv-multi-select-search
+                  control-css-id="suggestProductSearch"
+                  control-css-class="form-control kv-multi-select-search"
+                  icon-remove-css-class="icon-remove-search-product"
+                  input-placeholder="Theo mã, tên hàng"
+                  option-data-text-field="Code"
+                  option-data-value-field="Id"
+                  option-item-template="itemTemplate"
+                  option-data-source="products"
+                  filter-ids="filterIds"
+                  filter-keyword="filterKeyword"
+                  filter-text="filterText"
+                  limit-filter-ids="10"
+                  message-limit-filter-ids="Bạn chỉ được chọn tối đa 10 hàng hóa"
+                  on-type="onType()"
+                  field-compare-get-first-by-enter="Code"
+                  class="ng-isolate-scope"
+                >
+                  <div
+                    class="k-widget k-multiselect k-header form-control kv-multi-select-search"
+                    unselectable="on"
+                    title=""
+                    style=""
+                  >
+                    <div
+                      class="k-multiselect-wrap k-floatwrap"
+                      unselectable="on"
+                    >
+                      <ul
+                        role="listbox"
+                        unselectable="on"
+                        class="k-reset"
+                        id="suggestProductSearch_taglist"
+                      ></ul>
+                      <input
+                        class="k-input k-readonly multi-search-dropdown-default"
+                        style="width: 25px"
+                        accesskey=""
+                        autocomplete="off"
+                        role="listbox"
+                        aria-expanded="false"
+                        tabindex="0"
+                        aria-owns="suggestProductSearch_taglist suggestProductSearch_listbox"
+                        aria-disabled="false"
+                        aria-readonly="false"
+                        placeholder="Theo mã, tên hàng"
+                      /><span class="k-icon k-loading k-loading-hidden"></span>
+                    </div>
+                    <select
+                      id="suggestProductSearch"
+                      class="form-control kv-multi-select-search"
+                      data-role="multiselect"
+                      multiple="multiple"
+                      style="display: none"
+                      aria-disabled="false"
+                      aria-readonly="false"
+                    ></select
+                    ><span
+                      style="
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 13px;
+                        font-stretch: 100%;
+                        font-style: normal;
+                        font-weight: 400;
+                        letter-spacing: normal;
+                        text-transform: none;
+                        line-height: 17.03px;
+                        position: absolute;
+                        visibility: hidden;
+                        top: -3333px;
+                        left: -3333px;
+                      "
+                    ></span>
+                  </div> </kv-multi-select-search
+              ></kv-multi-select-search-product>
+            </div>
+            <div
+              class="form-group ng-hide"
+              ng-show="!isSuggestProductForSearchStockTake"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterProductCode"
+                placeholder="Theo mã hàng"
+                kv-select-text=""
+              />
+            </div>
+            <div
+              class="form-group ng-hide"
+              ng-show="!isSuggestProductForSearchStockTake"
+            >
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterProductName"
+                placeholder="Theo tên hàng"
+                kv-select-text=""
+              />
+            </div>
+            <div class="form-group">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterSerial"
+                placeholder="Theo Serial/IMEI"
+                kv-select-text=""
+              />
+            </div>
+            <div class="form-group ng-hide" ng-show="settings.UseBatchExpire">
+              <input
+                ng-enter="quickSearch()"
+                class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                type="text"
+                ng-model="filterBatchExpire"
+                placeholder="Theo lô, hạn sử dụng"
+                kv-select-text=""
+              />
+            </div>
+            <div class="kv-window-footer">
+              <button
+                type="button"
+                class="btn btn-success ng-binding"
+                ng-click="quickSearch()"
+              >
+                <i class="far fa-search"></i>Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ngIf: selectedStock.length > 0 -->
+    </div>
+
+    <aside class="header-filter-buttons">
+      <a
+        class="btn btn-success kvopenSyncSalesChannel ng-hide"
+        ng-show="(_p.has('Product_Update') || _p.has('Product_Create')) &amp;&amp; _p.has('Product_Read') &amp;&amp; quantityProductSyncError != null &amp;&amp; quantityProductSyncError > 0 &amp;&amp; omniIsShowOnKv"
+        ng-click="openSyncSalesChannel()"
+        ><i class="fas fa-sync-alt"></i>
+        <span class="badge badge-danger ng-binding">0</span></a
+      ><!-- ngIf: selectedProduct.length > 0 -->
+      <div
+        ng-if="selectedProduct.length > 0"
+        class="addProductBtn productManipulation ng-scope"
+      >
+        <a href="javascript:void(0)" class="btn btn-success"
+          ><i class="far fa-ellipsis-v"></i>
+          <span class="text-btn ng-binding">Thao tác</span>
+          <i class="fa fa-caret-down"></i
+        ></a>
+        <ul>
+          <li>
+            <a
+              ng-show="_p.has('OrderSupplier_Create')"
+              ng-click="makePurchaseOrder()"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-inbox-in"></i> Đặt hàng nhập</a
+            >
+          </li>
+          <li>
+            <a
+              ng-show="_p.has('PurchaseOrder_Create')"
+              ng-click="makePurchaseReciept()"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-dolly-flatbed-alt"></i> Nhập hàng</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="moveGroupProductList()"
+              ng-show="_p.has('Product_Update')"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-external-link-square-alt"></i> Chuyển nhóm
+              hàng</a
+            >
+          </li>
+          <li>
+            <a ng-click="printProductList()" kv-btn-scroll="" class="ng-binding"
+              ><i class="far fa-barcode"></i> In tem mã</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="activeProductList(false)"
+              ng-show="_p.has('Product_Update') &amp;&amp; (ShowInActiveProduct != 2)"
+              class="ng-binding"
+              ><i class="far fa-fw fa-lock"></i> Ngừng kinh doanh</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="activeProductList(true)"
+              ng-show="_p.has('Product_Update') &amp;&amp; (ShowInActiveProduct != 3)"
+              class="ng-binding ng-hide"
+              ><i class="far fa-fw fa-check-square"></i> Cho phép kinh doanh</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="updatePointProductList()"
+              ng-show="_p.has('Product_Update') &amp;&amp; appSetting.RewardPoint &amp;&amp; appSetting.RewardPoint_Type == _rewardPointType.Product"
+              kv-btn-scroll=""
+              class="ng-binding ng-hide"
+              ><i class="far fa-star"></i> Thiết lập điểm thưởng</a
+            >
+          </li>
+          <li ng-show="_p.has('Product_Export')" class="hide-mobile-tablet">
+            <a ng-click="exportProductMulti()" class="ng-binding"
+              ><i class="far fa-fw fa-file-export"></i> Xuất file</a
+            >
+          </li>
+          <li
+            ng-show="_p.has('Product_Export') &amp;&amp; omniIsShowOnKv &amp;&amp; isShowExportProductChannelMulti"
+            class="hide-mobile-tablet ng-hide"
+          >
+            <a ng-click="exportProductChannelMulti()" class="ng-binding"
+              ><i class="far fa-fw fa-file-export"></i> Xuất file mẫu sàn
+              TMĐT</a
+            >
+          </li>
+          <li ng-show="appSetting.Warranty" class="ng-hide">
+            <a
+              ng-click="updateWarrantyProductList()"
+              ng-show="_p.has('Product_Update')"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-fw fa-check-square"></i> Cập nhật bảo hành, bảo
+              trì</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="deleteProductList()"
+              ng-show="_p.has('Product_Delete')"
+              class="ng-binding"
+              ><i class="far fa-fw fa-trash-alt"></i> Xóa hàng hóa</a
+            >
+          </li>
+          <li
+            ng-show="_p.has('Product_Update') &amp;&amp; omniIsShowOnKv"
+            class="ng-hide"
+          >
+            <a ng-click="mappingChannelProduct()"
+              ><i class="far fa-link"></i> Liên kết kênh bán</a
+            >
+          </li>
+          <li
+            ng-show="_p.has('Product_Update') &amp;&amp; UsingProductVAT"
+            class="ng-hide"
+          >
+            <a ng-click="moveVATProductList()" class="ng-binding"
+              ><i class="icon-tax fa-tax"></i> Chuyển mức thuế</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- end ngIf: selectedProduct.length > 0 -->
+      <div class="addProductBtn">
+        <a
+          ng-show="_p.has('Product_Create')"
+          href="javascript:void(0)"
+          class="btn btn-success"
+          ><i class="far fa-plus"></i>
+          <span class="text-btn ng-binding">Thêm mới</span>
+          <i class="fa fa-caret-down"></i></a
+        ><!-- ngIf: !retailer.isActiveGppDrugStore -->
+        <ul ng-if="!retailer.isActiveGppDrugStore" class="ng-scope">
+          <li>
+            <a
+              ng-click="AddProduct(pTypeValue.Purchased)"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-fw fa-plus"></i> Thêm hàng hóa</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="AddProduct(pTypeValue.Service)"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-fw fa-plus"></i> Thêm dịch vụ</a
+            >
+          </li>
+          <li>
+            <a
+              ng-click="AddProduct(pTypeValue.Manufactured)"
+              kv-btn-scroll=""
+              class="ng-binding"
+              ><i class="far fa-fw fa-plus"></i> Thêm Combo - đóng gói</a
+            >
+          </li>
+        </ul>
+        <!-- end ngIf: !retailer.isActiveGppDrugStore --><!-- ngIf: retailer.isActiveGppDrugStore -->
+      </div>
+      <a
+        ng-show="_p.has('Product_Import')"
+        title="Import"
+        href="javascript:void(0)"
+        ng-click="importProduct()"
+        class="btn btn-success kv2BtnImport"
+        ><i class="fas fa-fw fa-file-import"></i>
+        <span class="text-btn ng-binding">Import</span></a
+      >
+      <a
+        ng-show="_p.has('Product_Export')"
+        title="Xuất  file"
+        href="javascript:void(0)"
+        ng-click="exportProduct()"
+        class="btn btn-success kv2BtnExport"
+        ><i class="fas fa-fw fa-file-export"></i>
+        <span class="text-btn ng-binding">Xuất file</span></a
+      >
+      <div class="addProductBtn show-mobile-tablet dropdown-overflow-1366">
+        <a class="btn btn-success" title="Xuất  file"
+          ><i class="fas fa-file"></i><span class="text-btn">File</span>
+          <i class="fa fa-caret-down"></i
+        ></a>
+        <ul>
+          <li>
+            <a
+              ng-show="_p.has('Product_Import')"
+              href="javascript:void(0)"
+              ng-click="importProduct()"
+              ><i class="far fa-fw fa-file-import"></i>
+              <span class="text-btn ng-binding">Import</span></a
+            >
+          </li>
+          <li>
+            <a
+              ng-show="_p.has('Product_Export')"
+              title="Xuất  file"
+              href="javascript:void(0)"
+              ng-click="exportProduct()"
+              ><i class="far fa-file-export fa-fw"></i>
+              <span class="text-btn ng-binding">Xuất file</span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        id="columnSelection"
+        kv-column-selection=""
+        class="columnView k-widget k-reset k-header k-menu k-menu-horizontal"
+        binded-grid="bindedGrid"
+        title="Tùy chọn"
+        data-role="menu"
+        role="menubar"
+        tabindex="0"
+        aria-activedescendant="columnSelection_mn_active"
+      >
+        <li
+          class="k-item k-state-default k-first k-last"
+          role="menuitem"
+          aria-haspopup="true"
+          style="z-index: 100"
+          id="columnSelection_mn_active"
+        >
+          <span class="k-link"><span class="k-icon k-i-arrow-s"></span></span>
+          <div
+            class="k-animation-container"
+            style="
+              width: 405px;
+              height: 334px;
+              margin-left: -25px;
+              padding-left: 25px;
+              padding-right: 25px;
+              padding-bottom: 30px;
+              overflow: hidden;
+              display: none;
+              position: absolute;
+              z-index: 10002;
+              top: 0px;
+              left: -347px;
+            "
+          >
+            <ul
+              class="k-group k-menu-group k-popup k-reset"
+              style="
+                display: none;
+                max-height: 567px;
+                overflow: auto;
+                position: absolute;
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-stretch: 100%;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                transform: translateY(-334px);
+              "
+              role="menu"
+              data-role="popup"
+            >
+              <li class="k-item k-state-default k-first" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Image"
+                    /><span></span>Hình ảnh</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Code"
+                    /><span></span>Mã hàng</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Barcode"
+                    /><span></span>Mã vạch</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Name"
+                    /><span></span>Tên hàng</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="CategoryName"
+                    /><span></span>Nhóm hàng</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="ProType"
+                    /><span></span>Loại hàng</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="OmniChannel"
+                    /><span></span>Liên kết kênh bán</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="BasePrice"
+                    /><span></span>Giá bán</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Cost"
+                    /><span></span>Giá vốn</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="TradeMarkName"
+                    /><span></span>Thương hiệu</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="OnHand"
+                    /><span></span>Tồn kho</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="ProductShelvesArr"
+                    /><span></span>Vị trí</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="Reserved"
+                    /><span></span>Khách đặt</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="StockoutForecast"
+                    /><span></span>Dự kiến hết hàng</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="MinQuantity"
+                    /><span></span>Định mức tồn ít nhất</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="MaxQuantity"
+                    /><span></span>Định mức tồn nhiều nhất</label
+                  ></span
+                >
+              </li>
+              <li class="k-item k-state-default k-last" role="menuitem">
+                <span class="k-link"
+                  ><label title=" " class="quickaction_chk undefined"
+                    ><input
+                      type="checkbox"
+                      checked="checked"
+                      class="check_row"
+                      data-field="isActive"
+                    /><span></span>Trạng thái</label
+                  ></span
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+      </div>
+    </aside>
+
+    <aside class="header-filter-buttons">
+      <a
+        href="javascript:void(0)"
+        ng-click="lumpedStock()"
+        class="btn btn-success"
+        ng-show="rights.canAdd &amp;&amp; selectedStock.length > 0"
+        title="Gộp phiếu"
+        ><i class="fa fa-files-o"></i>
+        <span class="text-btn ng-binding">Gộp phiếu</span></a
+      >
+      <a
+        href="javascript:void(0)"
+        ng-click="addNew()"
+        class="btn btn-success"
+        ng-show="rights.canAdd"
+        title="Kiểm kho"
+        ><i class="far fa-plus"></i>
+        <span class="text-btn ng-binding">Kiểm kho</span></a
+      >
+      <div
+        class="addProductBtn sm-popup hide-mobile-tablet"
+        ng-show="_p.has('StockTake_Export') &amp;&amp; _p.has('StockTake_Read')"
+      >
+        <a class="btn btn-success kv2BtnExport" title="Xuất  file"
+          ><i class="fas fa-file-export"></i>
+          <span class="text-btn ng-binding">Xuất file</span>
+          <i class="fa fa-caret-down"></i
+        ></a>
+        <ul>
+          <li>
+            <a ng-click="export(false)" class="ng-binding"
+              ><i class="far fa-share"></i> File tổng quan</a
+            >
+          </li>
+          <li>
+            <a ng-click="export(true)" class="ng-binding"
+              ><i class="far fa-share-square"></i> File chi tiết</a
+            >
+          </li>
+          <i class="far"></i>
+        </ul>
+      </div>
+      <div
+        id="columnSelection"
+        kv-column-selection=""
+        class="columnView k-widget k-reset k-header k-menu k-menu-horizontal"
+        binded-grid="bindedGrid"
+        title="Tùy chọn"
+        data-role="menu"
+        role="menubar"
+        tabindex="0"
+      >
+        <li
+          class="k-item k-state-default k-first k-last"
+          role="menuitem"
+          aria-haspopup="true"
+        >
+          <span class="k-link"><span class="k-icon k-i-arrow-s"></span></span>
+          <ul
+            class="k-group k-menu-group"
+            style="display: none"
+            role="menu"
+            aria-hidden="true"
+          >
+            <li class="k-item k-state-default k-first" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="Code"
+                  /><span></span>Mã kiểm kho</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="CreatedDate"
+                  /><span></span>Thời gian</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="UserCreate.UserName"
+                  /><span></span>Người tạo</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="User.GivenName"
+                  /><span></span>Người cân bằng</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="AdjustmentDate"
+                  /><span></span>Ngày cân bằng</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalActualCount"
+                  /><span></span>SL thực tế</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalPriceActual"
+                  /><span></span>Tổng thực tế</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalAdjustmentValue"
+                  /><span></span>Tổng chênh lệch</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalAdjustmentPrice"
+                  /><span></span>Tổng giá trị lệch</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalQuantityIncrease"
+                  /><span></span>SL lệch tăng</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalPriceIncrease"
+                  /><span></span>Tổng giá trị tăng</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalQuantityReduced"
+                  /><span></span>SL lệch giảm</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="TotalPriceReduced"
+                  /><span></span>Tổng giá trị giảm</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="Description"
+                  /><span></span>Ghi chú</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk undefined"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="Status"
+                  /><span></span>Trạng thái</label
+                ></span
+              >
+            </li>
+            <li class="k-item k-state-default k-last" role="menuitem">
+              <span class="k-link"
+                ><label title=" " class="quickaction_chk quickaction_none"
+                  ><input
+                    type="checkbox"
+                    checked="checked"
+                    class="check_row"
+                    data-field="" /><span></span></label
+              ></span>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </aside>
+
+    <div
+      id="importExportNotificationBoard"
+      ng-show="showImportExportBoard &amp;&amp; !onChartPage"
+      class="notificationImpExp"
+    >
+      <div class="notification">
+        <div class="notificationImpExpBoardTitle">
+          <span class="noti_title ng-binding"
+            >Xử lý thiết lập, import, xuất file, thanh toán</span
+          >
+          <span class="noti_action"
+            ><a
+              href="javascript:void(0)"
+              class="minmax"
+              title="Ẩn"
+              kv-notification=""
+              ><i class="far fa-angle-down"></i
+            ></a>
+            <a
+              href="javascript:void(0)"
+              class="expcomp"
+              title="Phóng to"
+              kv-notification=""
+              ><i class="kv-icon kv-expand"></i
+            ></a>
+            <a
+              href="javascript:void(0)"
+              class="icon del dele"
+              title="Đóng"
+              ng-click="closeImportExportBoard()"
+            ></a
+          ></span>
+        </div>
+        <div
+          id="importExportContent"
+          class="notificationImpExpBoardContent uln"
+        >
+          <ul>
+            <!-- ngRepeat: item in allImportExportTask.Data -->
+            <li
+              ng-repeat="item in allImportExportTask.Data"
+              ng-class="item.IsImport ? 'iconKvImport' : 'iconKvExport'"
+              class="ng-scope iconKvExport"
+            >
+              <i class="fas fa-file-export" ng-hide="false"></i>
+              <div class="icon-tax ng-hide" ng-show="false"></div>
+              <h5 class="ng-binding">BangGia_KV14032024-105516-778.xlsx</h5>
+              <span
+                ng-hide="item.readyDownload"
+                ng-class="{'txtRed': (item.Status == importExportStatusMap.Error),'loading-icon' : (item.Status == importExportStatusMap.Processing) , 'txtBlue' : (item.Status == importExportStatusMap.Completed)}"
+                ng-bind-html="item.StatusName"
+                class="ng-binding ng-hide txtBlue"
+                >Nhấn vào đây để tải xuống</span
+              >
+              <a
+                href="https://cdn-export.kiotviet.vn/vmbmvnm/4d213c56a79e48fc9a73d8ba557bf2ff/BangGia_KV14032024-105516-778.xlsx"
+                ng-show="item.readyDownload"
+                ng-click="downloadFileExport(item.Id)"
+                target="_blank"
+                class="noti_link ng-binding"
+                >Nhấn vào đây để tải xuống</a
+              >
+              <!-- ngIf: item.Status == importExportStatusMap.Completed --><i
+                class="fa fa-check kv-color-success ng-scope"
+                ng-if="item.Status == importExportStatusMap.Completed"
+              ></i
+              ><!-- end ngIf: item.Status == importExportStatusMap.Completed -->
+              <!-- ngIf: item.Status == importExportStatusMap.Error -->
+            </li>
+            <!-- end ngRepeat: item in allImportExportTask.Data -->
+          </ul>
+        </div>
+        <div ng-show="!online" class="alert-messenger ng-binding ng-hide">
+          Không có kết nối. Vui lòng kiểm tra lại.
+        </div>
+      </div>
+    </div>
+
+    <article class="proBox product-Des mb15 posR ng-scope" title="">
+      <h3 class="ng-binding">Mô tả</h3>
+      <div class="proBoxItems">
+        <table
+          cellspacing="4"
+          cellpadding="0"
+          class="k-widget k-editor k-header k-editor-widget"
+          role="presentation"
+        >
+          <tbody>
+            <tr role="presentation">
+              <td class="k-editor-toolbar-wrap" role="presentation">
+                <ul
+                  class="k-editor-toolbar ng-scope"
+                  role="toolbar"
+                  data-role="editortoolbar"
+                >
+                  <li class="k-tool-group" role="presentation" tabindex="-1">
+                    <span
+                      class="k-editor-dropdown k-group-start k-group-end"
+                      tabindex="-1"
+                      ><span
+                        title="Format"
+                        class="k-widget k-dropdown k-header k-editor-widget"
+                        unselectable="on"
+                        role="listbox"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        tabindex="-1"
+                        aria-owns=""
+                        aria-disabled="false"
+                        aria-readonly="false"
+                        aria-busy="false"
+                        style="width: 110px"
+                        aria-activedescendant="891db37b-cd78-44cc-a18b-d3eaa2a104e3"
+                        ><span
+                          unselectable="on"
+                          class="k-dropdown-wrap k-state-default"
+                          tabindex="-1"
+                          ><span unselectable="on" class="k-input" tabindex="-1"
+                            >Format</span
+                          ><span
+                            unselectable="on"
+                            class="k-select"
+                            tabindex="-1"
+                            ><span
+                              unselectable="on"
+                              class="k-icon k-i-arrow-s"
+                              tabindex="-1"
+                              >select</span
+                            ></span
+                          ></span
+                        ><select
+                          title="Format"
+                          class="k-formatting k-decorated"
+                          data-role="selectbox"
+                          unselectable="on"
+                          style="width: 110px; display: none"
+                          tabindex="-1"
+                        >
+                          <option value="p" tabindex="-1">Paragraph</option>
+                          <option value="blockquote" tabindex="-1">
+                            Quotation
+                          </option>
+                          <option value="h1" tabindex="-1">Heading 1</option>
+                          <option value="h2" tabindex="-1">Heading 2</option>
+                          <option value="h3" tabindex="-1">Heading 3</option>
+                          <option value="h4" tabindex="-1">Heading 4</option>
+                          <option value="h5" tabindex="-1">Heading 5</option>
+                          <option value="h6" tabindex="-1">Heading 6</option>
+                        </select></span
+                      ></span
+                    >
+                  </li>
+                  <li
+                    class="k-tool-group k-button-group"
+                    role="presentation"
+                    tabindex="-1"
+                  >
+                    <a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-start"
+                      unselectable="on"
+                      title="Bold"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-bold"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1">Bold</span></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool"
+                      unselectable="on"
+                      title="Italic"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-italic"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1">Italic</span></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end"
+                      unselectable="on"
+                      title="Underline"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-underline"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Underline</span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    class="k-tool-group k-button-group"
+                    role="presentation"
+                    tabindex="-1"
+                  >
+                    <a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-start"
+                      unselectable="on"
+                      title="Align text left"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-justifyLeft"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Align text left</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool"
+                      unselectable="on"
+                      title="Center text"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-justifyCenter"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Center text</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end"
+                      unselectable="on"
+                      title="Align text right"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-justifyRight"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Align text right</span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    class="k-tool-group k-button-group"
+                    role="presentation"
+                    tabindex="-1"
+                  >
+                    <a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-start"
+                      unselectable="on"
+                      title="Insert unordered list"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-insertUnorderedList"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Insert unordered list</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool"
+                      unselectable="on"
+                      title="Insert ordered list"
+                      aria-pressed="false"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-insertOrderedList"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Insert ordered list</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end"
+                      unselectable="on"
+                      title="Indent"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-indent"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1">Indent</span></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end k-state-disabled"
+                      unselectable="on"
+                      title="Outdent"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-outdent"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1">Outdent</span></a
+                    >
+                  </li>
+                  <li
+                    class="k-tool-group k-button-group"
+                    role="presentation"
+                    tabindex="-1"
+                  >
+                    <a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-start"
+                      unselectable="on"
+                      title="Insert hyperlink"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-createLink"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Insert hyperlink</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Remove hyperlink"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-unlink"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Remove hyperlink</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end"
+                      unselectable="on"
+                      title="Insert image"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-insertImage"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Insert image</span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    class="k-tool-group k-button-group"
+                    role="presentation"
+                    tabindex="-1"
+                    style="display: none"
+                  >
+                    <a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-start k-group-end"
+                      data-popup=""
+                      unselectable="on"
+                      title="Create table"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-createTable"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Create table</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Add column on the left"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-addColumnLeft"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Add column on the left</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Add column on the right"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-addColumnRight"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Add column on the right</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Add row above"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-addRowAbove"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Add row above</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Add row below"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-addRowBelow"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Add row below</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-state-disabled"
+                      unselectable="on"
+                      title="Delete row"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-deleteRow"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Delete row</span
+                      ></a
+                    ><a
+                      href=""
+                      role="button"
+                      class="k-tool k-group-end k-state-disabled"
+                      unselectable="on"
+                      title="Delete column"
+                      tabindex="-1"
+                      ><span
+                        unselectable="on"
+                        class="k-tool-icon k-deleteColumn"
+                        tabindex="-1"
+                      ></span
+                      ><span class="k-tool-text" tabindex="-1"
+                        >Delete column</span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="k-editable-area">
+                <iframe
+                  title="Editable area. Press F10 for toolbar."
+                  frameborder="0"
+                  class="k-content"
+                  tabindex="0"
+                  src='javascript:""'
+                ></iframe
+                ><textarea
+                  placeholder="Ghi chú"
+                  k-encoded="true"
+                  kendo-editor=""
+                  k-ng-model="product.Description"
+                  k-options="descriptionOptions"
+                  maxlength="30000"
+                  data-role="editor"
+                  autocomplete="off"
+                  class="k-content k-raw-content"
+                  style="display: none"
+                ></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </body>
+</html>

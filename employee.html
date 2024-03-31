@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KiotViet - Nhân viên</title>
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+  <link rel="icon" href="./assets/img/favicon.png" fetchpriority="high" />
+  <script src="https://kit.fontawesome.com/272317828a.js" crossorigin="anonymous"></script>
+  <script src="./assets/js/select_number_of_records.js"></script>
+  <script src="./assets/js/to_top.js"></script>
+  <script src="./assets/js/creatId.js"></script>
+  <script src="./assets/js/search_input.js"></script>
+  <script src="./assets/js/toggle_list_display.js"></script>
+  <script src="./assets/js/btn_show_div.js"></script>
+  <script src="./assets/js/btn_close.js"></script>
+  <script src="./assets/js/toast.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/employee.css" />
+  <link rel="stylesheet" href="./assets/css/check_box.css" />
+  <link rel="stylesheet" href="./assets/css/add_employee.css" />
+  <link rel="stylesheet" href="./assets/css/set_salary.css" />
+  <link rel="stylesheet" href="./assets/css/add_new_application_form.css" />
+</head>
+
+<body>
+  <!-- main header -->
+  <header id="mainHeader"></header>
+  <script src="./assets/js/main_header.js"></script>
+
+  <!-- section employee -->
+  <section class="employee" id="sectionEmployee">
+    <div class="container">
+      <div class="employee-main-body">
+        <!-- body left -->
+        <div class="employee-main-left">
+          <div class="em-left-header">
+            <h1 class="em-left-heading">Nhân viên</h1>
+            <span class="em-left-header-content">Đã có
+              <span id="updateQuantityEmployee" class="update-quantity-employee"></span>
+              <!-- <span>/</span>
+              <span>10</span> -->
+              nhân viên.
+              <a href="#">Nâng gói</a>
+            </span>
+            <script src="./assets/js/update_quantity_employee.js"></script>
+          </div>
+
+          <!-- department -->
+          <div class="em-left-content content-department">
+            <div class="em-left-content-title">
+              <h3 class="em-left-content-heading">Phòng ban</h3>
+              <div class="em-left-content-icon icon-department">
+                <a href="#" class="add-department-icon btn-icon add-group-product fas fa-solid fa-plus-circle"
+                  title="Thêm phòng ban mới" id="addNewDepartment"></a>
+                <script src="./assets/js/btn_show_div.js"></script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    showDiv("addNewDepartment", ".add-new-department");
+                  });
+                </script>
+                <i href="#" class="show-hide-icon fas fa-solid fa-chevron-up" id="hideAddDepartment"></i>
+              </div>
+            </div>
+
+            <div class="department-list">
+              <input type="search" id="departmentListSearch" class="hide-show-department"
+                placeholder="Chọn phòng ban" />
+              <div id="departmentListId" class="department-list-items">
+                <ul class="form-items">
+                  <li class="form-item">
+                    <span class="item-name department-name">Quản lý</span>
+                    <i id="showEditDepartment" class="fas fa-solid fa-pen"></i>
+                  </li>
+
+                  <li class="form-item">
+                    <span class="item-name department-name">Kho</span>
+                    <i class="fas fa-solid fa-pen"></i>
+                  </li>
+                </ul>
+
+                <script src="./assets/js/search_input.js"></script>
+                <script src="./assets/js/toggle_list_display.js"></script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    toggleListDisplay(
+                      "departmentListSearch",
+                      "departmentListId",
+                      ".department-name"
+                    );
+                  });
+                </script>
+              </div>
+              <script src="./assets/js/search_input.js">
+                document.addEventListener("DOMContentLoaded", function () {
+                  searchDepartment("departmentListSearch", "departmentListId");
+                });
+              </script>
+              <script src="./assets/js/search_department_table.js"></script>
+
+              <!-- add-new-department -->
+              <div class="add-new-department" id="addNewDepartmentForm">
+                <div class="mask mask-department">
+                  <div class="add-new-department-container">
+                    <div class="add-department-title">
+                      <span class="new-department-title">Thêm mới phòng ban</span>
+                      <i id="closeCreatDepartment" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeCreatDepartment",
+                              ".add-new-department"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-department-body">
+                      <div class="form-group group-department-position">
+                        <label for="departmentName">Tên phòng ban</label>
+                        <div class="form-wrap">
+                          <input type="text" id="departmentName" class="form-control form-control-department-position" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="departmentDesc">Mô tả</label>
+                        <div class="form-wrap department-area-input">
+                          <i class="department-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="departmentDesc" class="form-control form-control-department-position" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="departmentActive departmentInactive">Trạng thái</label>
+                        <input type="text" id="departmentStatus" />
+                        <div class="form-wrap">
+                          <label for="departmentActive" class="label-status">
+                            <input type="radio" name="isActiveDepartment" id="departmentActive"
+                              class="form-control-radio" value="true" checked />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="departmentInactive" class="label-status">
+                            <input type="radio" name="isActiveDepartment" id="departmentInactive"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom"
+                          id="btnSaveDepartment">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <script src="./assets/js/toast.js"></script>
+                        <script src="./assets/js/creat_department.js"></script>
+                        <script src="./assets/js/add_local_storage_department.js"></script>
+                        <script src="./assets/js/show_list_department.js"></script>
+
+                        <button id="cancelCreatDepartment" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelCreatDepartment",
+                                ".add-new-department"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- add-edit-department -->
+              <div class="add-edit-department">
+                <div class="mask mask-department">
+                  <div class="add-edit-department-container">
+                    <div class="add-department-title">
+                      <span class="edit-department-title">Cập nhật phòng ban</span>
+                      <i id="closeEditDepartment" class="form-close-icon fas fa-solid fa-close"></i>
+                    </div>
+
+                    <div class="add-department-body">
+                      <div class="form-group">
+                        <label for="departmentNameEdit">Tên phòng ban</label>
+                        <div class="form-wrap">
+                          <input type="text" id="departmentNameEdit" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="departmentDescEdit">Mô tả</label>
+                        <div class="form-wrap department-area-input">
+                          <i class="department-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="departmentDescEdit" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="departmentStatusEdit">Trạng thái</label>
+                        <input type="text" name="" id="departmentStatusEdit" />
+                        <div class="form-wrap">
+                          <label for="departmentActiveEdit" class="label-status">
+                            <input type="radio" name="isActiveDepartmentEdit" id="departmentActiveEdit"
+                              class="form-control-radio" value="true" />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="departmentInactiveEdit" class="label-status">
+                            <input type="radio" name="isActiveDepartmentEdit" id="departmentInactiveEdit"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeEditDepartment",
+                              ".add-edit-department"
+                            );
+                          }
+                        );
+                      </script>
+
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="btnSaveDepartmentEdit">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <button id="cancelEditDepartment" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelEditDepartment",
+                                ".add-edit-department"
+                              );
+                            }
+                          );
+                        </script>
+                        <button id="showRemoveDepartment" class="btn btn-red btn-red-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                          <span>Xóa</span>
+                        </button>
+                        <script src="./assets/js/btn_show_div.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              showDiv(
+                                "showRemoveDepartment",
+                                ".add-remove-department"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script src="./assets/js/edit_remove_department.js"></script>
+
+              <!-- add-remove-department -->
+              <div class="add-remove-department">
+                <div class="mask mask-department">
+                  <div class="add-remove-department-container">
+                    <div class="add-department-title">
+                      <span class="remove-department-title">Xác nhận</span>
+                      <i id="closeRemoveDepartment" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeRemoveDepartment",
+                              ".add-remove-department"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-department-body">
+                      <div class="form-group">
+                        <p>
+                          Hệ thống sẽ xóa hoàn toàn
+                          <span>phòng ban</span> này. Bạn có chắc chắn?
+                        </p>
+                      </div>
+
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="acceptDepartmentRemove">
+                          <i class="btn-success-icon fas fa-solid fa-check"></i>
+                          <span>Đồng ý</span>
+                        </button>
+                        <button id="cancelRemoveDepartment" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                          <script src="./assets/js/btn_close.js"></script>
+                          <script>
+                            document.addEventListener(
+                              "DOMContentLoaded",
+                              function () {
+                                closeButton(
+                                  "cancelRemoveDepartment",
+                                  ".add-remove-department"
+                                );
+                              }
+                            );
+                          </script>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="./assets/js/btn_toggle_rotate.js"></script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              toggleButtonDivContent(
+                "hideAddDepartment",
+                ".hide-show-department",
+                ".icon-department"
+              );
+            });
+          </script>
+
+          <!-- position -->
+          <div class="em-left-content content-position">
+            <div class="em-left-content-title">
+              <h3 class="em-left-content-heading">Chức danh</h3>
+              <div class="em-left-content-icon icon-position">
+                <a href="#" class="btn-icon add-group-product fas fa-solid fa-plus-circle" title="Thêm chức danh mới"
+                  id="addNewPosition"></a>
+                <script src="./assets/js/btn_show_div.js"></script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    showDiv("addNewPosition", ".add-new-position");
+                  });
+                </script>
+                <i href="#" class="show-hide-icon fas fa-solid fa-chevron-up" id="hideAddPosition"></i>
+              </div>
+            </div>
+
+            <div class="position-list">
+              <input type="search" id="positionListSearch" class="hide-show-position" placeholder="Chọn chức danh" />
+              <div id="positionListId" class="position-list-items">
+                <ul class="form-items">
+                  <li class="form-item">
+                    <span class="item-name position-name">Cửa hàng trưởng</span>
+                    <i id="showEditPosition" class="fas fa-solid fa-pen"></i>
+                  </li>
+
+                  <li class="form-item">
+                    <span class="item-name position-name">Quản lý kho</span>
+                    <i class="fas fa-solid fa-pen"></i>
+                  </li>
+                </ul>
+              </div>
+              <script src="./assets/js/search_input.js"></script>
+              <script src="./assets/js/toggle_list_display.js"></script>
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  toggleListDisplay(
+                    "positionListSearch",
+                    "positionListId",
+                    ".position-name"
+                  );
+                });
+              </script>
+              <script src="./assets/js/search_input.js">
+                document.addEventListener("DOMContentLoaded", function () {
+                  searchDepartment("positionListSearch", "positionListId");
+                });
+              </script>
+
+              <script src="./assets/js/search_position_table.js"></script>
+
+              <!-- add-new-position -->
+              <div class="add-new-position">
+                <div class="mask mask-position">
+                  <div class="add-new-position-container">
+                    <div class="add-position-title">
+                      <span class="new-position-title">Thêm mới chức danh</span>
+                      <i id="closeCreatPosition" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeCreatPosition",
+                              ".add-new-position"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-position-body">
+                      <div class="form-group group-department-position">
+                        <label for="positionName">Tên chức danh</label>
+                        <div class="form-wrap">
+                          <input type="text" id="positionName" class="form-control form-control-department-position" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="positionDesc">Mô tả</label>
+                        <div class="form-wrap position-area-input">
+                          <i class="position-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="positionDesc" class="form-control form-control-department-position" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="positionActive postionInactive">Trạng thái</label>
+                        <input id="positionStatus" type="text" />
+                        <div class="form-wrap">
+                          <label for="positionActive" class="label-status">
+                            <input type="radio" name="isActivePosition" id="positionActive" class="form-control-radio"
+                              value="true" checked />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="positionInactive" class="label-status">
+                            <input type="radio" name="isActivePosition" id="positionInactive" class="form-control-radio"
+                              value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button onclick="onClickAddNewPosition()" class="btn btn-success btn-success-bottom"
+                          id="btnSavePosition">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <script src="./assets/js/toast.js"></script>
+                        <script src="./assets/js/creat_position.js"></script>
+                        <script src="./assets/js/add_local_storage_position.js"></script>
+                        <script src="./assets/js/show_list_position.js"></script>
+
+                        <button id="cancelCreatPosition" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelCreatPosition",
+                                ".add-new-position"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- add-edit-position -->
+              <div class="add-edit-position">
+                <div class="mask mask-position">
+                  <div class="add-edit-position-container">
+                    <div class="add-position-title">
+                      <span class="edit-position-title">Cập nhật chức danh</span>
+                      <i id="closeEditPosition" class="form-close-icon fas fa-solid fa-close"></i>
+                    </div>
+
+                    <div class="add-position-body">
+                      <div class="form-group group-department-position">
+                        <label for="positionNameEdit">Tên phòng ban</label>
+                        <div class="form-wrap">
+                          <input type="text" id="positionNameEdit" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="positionDescEdit">Mô tả</label>
+                        <div class="form-wrap position-area-input">
+                          <i class="position-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="positionDescEdit" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-department-position">
+                        <label for="positionStatusEdit">Trạng thái</label>
+                        <input type="text" name="" id="positionStatusEdit" />
+                        <div class="form-wrap">
+                          <label for="positionActiveEdit" class="label-status">
+                            <input type="radio" name="isActivePositionEdit" id="positionActiveEdit"
+                              class="form-control-radio" value="true" />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="positionInactiveEdit" class="label-status">
+                            <input type="radio" name="isActivePositionEdit" id="positionInactiveEdit"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeEditPosition",
+                              ".add-edit-position"
+                            );
+                          }
+                        );
+                      </script>
+
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="btnSavePositionEdit">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <button id="cancelEditPosition" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelEditPosition",
+                                ".add-edit-position"
+                              );
+                            }
+                          );
+                        </script>
+                        <button id="showRemovePosition" class="btn btn-red btn-red-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                          <span>Xóa</span>
+                        </button>
+                        <script src="./assets/js/btn_show_div.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              showDiv(
+                                "showRemovePosition",
+                                ".add-remove-position"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script src="./assets/js/edit_remove_position.js"></script>
+
+              <!-- add-remove-position -->
+              <div class="add-remove-position">
+                <div class="mask mask-position">
+                  <div class="add-remove-position-container">
+                    <div class="add-position-title">
+                      <span class="remove-position-title">Xác nhận</span>
+                      <i id="closeRemovePosition" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeRemovePosition",
+                              ".add-remove-position"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-position-body">
+                      <div class="form-group">
+                        <p>
+                          Hệ thống sẽ xóa hoàn toàn
+                          <span>chức danh</span> này. Bạn có chắc chắn?
+                        </p>
+                      </div>
+
+                      <!-- add btn bottom -->
+                      <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="acceptPositionRemove">
+                          <i class="btn-success-icon fas fa-solid fa-check"></i>
+                          <span>Đồng ý</span>
+                        </button>
+                        <button id="cancelRemovePosition" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                          <script src="./assets/js/btn_close.js"></script>
+                          <script>
+                            document.addEventListener(
+                              "DOMContentLoaded",
+                              function () {
+                                closeButton(
+                                  "cancelRemovePosition",
+                                  ".add-remove-position"
+                                );
+                              }
+                            );
+                          </script>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="./assets/js/btn_toggle_rotate.js"></script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              toggleButtonDivContent(
+                "hideAddPosition",
+                ".hide-show-position",
+                ".icon-position"
+              );
+            });
+          </script>
+
+          <!-- aside -->
+          <aside class="em-left-pageside">
+            <label for="numberOfRecords">Số bản ghi:</label>
+            <select class="number-of-records" id="numberOfRecords" name="Số bản ghi:">
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </aside>
+          
+        </div>
+
+        <!-- body right -->
+        <div class="employee-main-right">
+          <div class="employee-right-header">
+            <div class="header-filter-search">
+              <div class="input-group">
+                <i class="input-group-icon fas fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="" id="searchCodeName" class="form-control"
+                  placeholder="Tìm theo mã, tên nhân viên" />
+                <script src="./assets/js/search_employee_code_name.js"></script>
+              </div>
+
+              <div class="choosed-items">
+                <div class="choosed-number">
+                  <div id="selectedCount"></div>
+                  <span>nhân viên</span>
+                </div>
+                <span>được chọn</span>
+                <i class="btn-icon fas fa-solid fa-times" id="btnIconClose"></i>
+              </div>
+            </div>
+
+            <!-- header filter buttons -->
+            <div class="header-filter-buttons">
+              <ul class="header-filter-button-items">
+                <li class="header-filter-button-item" id="showBtnOperation">
+                  <button class="btn-success">
+                    <i class="btn-icon fas fa-solid fa-bars"></i>
+                    <span>Thao tác</span>
+                    <span></span>
+                    <i class="btn-icon fas fa-solid fa-caret-down"></i>
+                  </button>
+                  <ul class="operation-list" id="operationEmployeeList">
+                    <li>
+                      <button class="operation" id="btnOperation">
+                        <i class="btn-icon fa fa-regular fa-trash-can"></i>
+                        <span>Xóa</span>
+                      </button>
+                      <!-- remove-row-table -->
+                      <div class="remove-row-table remove-box">
+                        <div class="mask mask-remove">
+                          <div class="remove-row-table-container remove-container">
+                            <div class="add-remove-title">
+                              <span class="remove-remove-title">Xóa nhân viên</span>
+                              <i id="closeRemoveTable" class="form-close-icon fas fa-solid fa-close"></i>
+                              <script src="./assets/js/btn_close.js"></script>
+                              <script>
+                                document.addEventListener(
+                                  "DOMContentLoaded",
+                                  function () {
+                                    closeButton(
+                                      "closeRemoveTable",
+                                      ".remove-row-table"
+                                    );
+                                  }
+                                );
+                              </script>
+                            </div>
+
+                            <div class="add-remove-body">
+                              <div class="form-group">
+                                <p>
+                                  Hệ thống sẽ xóa hoàn toàn
+                                  <span>nhân viên</span> đã chọn. Bạn có chắc
+                                  chắn muốn xóa?
+                                </p>
+                              </div>
+
+                              <!-- add btn bottom -->
+                              <div class="add-btn-bottom">
+                                <button id="removeRowTable" class="btn btn-red btn-red-bottom">
+                                  <i class="btn-success-icon fas fa-solid fa-check"></i>
+                                  <span>Đồng ý</span>
+                                </button>
+                                <button id="cancelRemoveTable" class="btn btn-default btn-default-bottom">
+                                  <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                                  <span>Bỏ qua</span>
+                                  <script src="./assets/js/btn_close.js"></script>
+                                  <script>
+                                    document.addEventListener(
+                                      "DOMContentLoaded",
+                                      function () {
+                                        closeButton(
+                                          "cancelRemoveTable",
+                                          ".remove-row-table"
+                                        );
+                                      }
+                                    );
+                                  </script>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="header-filter-button-item">
+                  <button class="btn-success" id="addEmployeeButton" data-action = "addEmployee">
+                    <i class="btn-icon fas fa-solid fa-plus"></i>
+                    <span>Nhân viên</span>
+                  </button>
+                  <script src="./assets/js/btn_focus_show.js"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function(){
+                    toggleDisplay('addEmployeeButton', '.add-employee', 'employeeName');
+                    })
+                  </script>
+                </li>
+
+                <li class="header-filter-button-item">
+                  <button class="btn-success k-link">
+                    <i class="btn-icon fas fa-solid fa-list"></i>
+                    <span></span>
+                    <i class="btn-icon fas fa-solid fa-caret-down"></i>
+                  </button>
+                  <ul class="">
+                    <li class="">
+                      <div class="animation-container">
+                        <label class="container-check-box check-box-menu">Ảnh
+                          <input id="containerCheckBoxCellImg" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Mã nhân viên
+                          <input id="containerCheckBoxEmployeeCode" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Mã chấm công
+                          <input id="containerCheckBoxTimeKeepingCode" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Tên nhân viên
+                          <input id="containerCheckBoxEmployeeName" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Số điện thoại
+                          <input id="containerCheckBoxPhoneNumber" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Số CMND/CCCD
+                          <input id="containerCheckBoxIdCard" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Nợ lương nhân viên
+                          <input id="containerCheckBoxEmployeeUnpaidSalary" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Ghi chú
+                          <input id="containerCheckBoxNotes" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Thiết bị di động
+                          <input id="containerCheckBoxMobileDevices" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Ngày sinh
+                          <input id="containerCheckBoxDateOfBirth" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Giới tính
+                          <input id="containerCheckBoxGender" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Email
+                          <input id="containerCheckBoxEmail" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Facebook
+                          <input id="containerCheckBoxFacebook" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Địa chỉ
+                          <input id="containerCheckBoxAddress" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Chi nhánh trả lương
+                          <input id="containerCheckBoxSalaryBranch" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Chi nhánh làm việc
+                          <input id="containerCheckBoxWorkingBranch" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Phòng ban
+                          <input id="containerCheckBoxDepartment" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+
+                        <label class="container-check-box check-box-menu">Chức danh
+                          <input id="containerCheckBoxPosition" type="checkbox" checked="checked" />
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                  <script src="./assets/js/hide_show_table.js"></script>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- table employees -->
+          <div class="table-container">
+            <table class="employee-table-list">
+              <thead class="table-header">
+                <tr class="table-row-header">
+                  <th id="cellCheckAll">
+                    <label class="container-check-box">
+                      <input id="checkAll" type="checkbox" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </th>
+                  <th class="cell-img" for="containerCheckBoxCellImg">
+                    <a href="#" class="k-link"></a>
+                  </th>
+                  <th class="employee-code" for="containerCheckBoxEmployeeCode">
+                    Mã nhân viên
+                  </th>
+                  <th class="time-keeping-code" for="containerCheckBoxTimeKeepingCode">
+                    Mã chấm công
+                  </th>
+                  <th class="employee-name" for="containerCheckBoxEmployeeName">
+                    Tên nhân viên
+                  </th>
+                  <th class="phone-number" for="containerCheckBoxPhoneNumber">
+                    Số điện thoại
+                  </th>
+                  <th class="id-card" for="containerCheckBoxIdCard">
+                    Số CMND/CCCD
+                  </th>
+                  <th class="employee-unpaid-salary" for="containerCheckBoxEmployeeUnpaidSalary">
+                    Nợ lương nhân viên
+                  </th>
+                  <th class="notes" for="containerCheckBoxNotes">Ghi chú</th>
+                  <th class="mobile-devices" for="containerCheckBoxMobileDevices">
+                    Thiết bị di động
+                  </th>
+                  <th class="date-of-birth" for="containerCheckBoxDateOfBirth">
+                    Ngày sinh
+                  </th>
+                  <th class="gender" for="containerCheckBoxGender">
+                    Giới tính
+                  </th>
+                  <th class="email" for="containerCheckBoxEmail">Email</th>
+                  <th class="facebook" for="containerCheckBoxFacebook">
+                    Facebook
+                  </th>
+                  <th class="address" for="containerCheckBoxAddress">
+                    Địa chỉ
+                  </th>
+                  <th class="salary-branch" for="containerCheckBoxSalaryBranch">
+                    Chi nhánh trả lương
+                  </th>
+                  <th class="working-branch" for="containerCheckBoxWorkingBranch">
+                    Chi nhánh làm việc
+                  </th>
+                  <th id="departmentTableTh" class="department" for="containerCheckBoxDepartment">
+                    Phòng ban
+                  </th>
+                  <th class="position" for="containerCheckBoxPosition">
+                    Chức danh
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="employeeListId" class="table-body"></tbody>
+              <script src="./assets/js/btn_show_div.js"></script>
+              <script src="./assets/js/creat_employee.js"></script>
+              <script src="./assets/js/show_list_employee.js"></script>
+              <script src="./assets/js/toggle_employee_detail.js"></script>
+              <script src="./assets/js/verification_code.js"></script>
+            </table>
+            <script src="./assets/js/cell_check.js"></script>
+          </div>
+          <!-- add-remove-employee -->
+          <div class="add-remove-employee remove-box">
+            <div class="mask mask-remove">
+              <div class="remove-employee-container remove-container">
+                <div class="add-remove-title">
+                  <span class="remove-title">Xóa nhân viên</span>
+                  <i id="closeRemoveEmployee" class="close-icon fas fa-solid fa-close"></i>
+                  <script src="./assets/js/btn_close.js"></script>
+                  <script>
+                    document.addEventListener(
+                      "DOMContentLoaded",
+                      function () {
+                        closeButton(
+                          "closeRemoveEmployee",
+                          ".add-remove-employee"
+                        );
+                      }
+                    );
+                  </script>
+                </div>
+                <div class="add-remove-body">
+                  <div class="form-group">
+                    <p>
+                      Hệ thống sẽ <b>xóa hoàn toàn</b>
+                      <span>nhân viên</span> này
+                      <span>nhưng vẫn giữ các dữ liệu chấm công và các phiếu
+                        lương nếu có</span>. Bạn có chắc chắn muốn xóa?
+                    </p>
+                  </div>
+
+                  <!-- add btn bottom -->
+                  <div class="add-btn-bottom comfirmation-remove-employee">
+                    <button class="btn btn-success btn-success-bottom" id="acceptEmployeeRemove">
+                      <i class="btn-success-icon fas fa-solid fa-check"></i>
+                      <span>Đồng ý</span>
+                    </button>
+                    <button id="cancelRemoveEmployee" class="btn btn-default btn-default-bottom">
+                      <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                      <span>Bỏ qua</span>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "cancelRemoveEmployee",
+                              ".add-remove-employee"
+                            );
+                          }
+                        );
+                      </script>
+                    </button>
+                    <script src="./assets/js/btn_show_div.js"></script>
+                    <script src="./assets/js/btn_close.js"></script>
+                    <script src="./assets/js/remove_employee.js"></script>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section add employee -->
+  <section class="add-employee" id="addEmployee">
+    <div class="mask mask-1"></div>
+
+    <div id="containerAddEmployee">
+      <!-- add employee header -->
+      <div class="add-employee-head header">
+        <div class="add-employee-head-title header-title">
+          <span id="titleAddEmployee" class="add-employee-title-heading span-heading"></span>
+          <i class="add-employee-icon fas fa-solid fa-close" id="closeAddEmployee"></i>
+        </div>
+      </div>
+
+      <!-- add employee container -->
+      <div class="add-employee-container">
+        <div class="active-info-setting">
+          <a href="#" class="active-info-employee">Thông tin</a>
+          <a href="#" class="active-salary-setting">Thiết lập lương</a>
+          <script src="./assets/js/info_salary.js"></script>
+        </div>
+
+        <!-- form content -->
+        <div class="tab-content tab-content-form-employee" id="tabContent">
+
+          <div class="form-wrapper">
+            <!-- left content -->
+            <div class="profile-img">
+              <div class="wrap-img">
+                <img id="previewImg" src="" alt="Preview Image" style="display: none" />
+                <i id="wrapImgIcon" class="fas fa-solid fa-camera"></i>
+              </div>
+
+              <div class="dropzone">
+                <div class="upload-button" id="uploadBtn">
+                  <label for="employeeImg" class="custom-upload-btn">Chọn ảnh</label>
+                  <input type="file" id="employeeImg" accept="image/*" onchange="previewImage(event)" />
+
+                  <div class="upload-status-total">
+                    <em>drop files here to upload*</em>
+                    <strong class="upload-status"></strong>
+                    <span id="imagePath" class="file-name"></span><strong>100%</strong>
+                  </div>
+                  <!-- uploadImage function() -->
+                  <script src="./assets/js/img_upload.js"></script>
+                </div>
+              </div>
+            </div>
+
+            <!-- right content -->
+            <div class="information">
+              <div class="detail-information">
+                <!-- Initialization information -->
+                <div class="information-group">
+                  <div class="information-title">
+                    <span class="info-heading info-heading-add-employee">Thông tin khởi tạo</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Mã nhân viên</label>
+                    <div class="form-wrap">
+                      <input id="employeeCode" class="form-control" type="text" placeholder="Mã nhân viên tự động"
+                        maxlength="10" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Tên nhân viên</label>
+                    <div class="form-wrap">
+                      <input id="employeeName" class="form-control" type="text" />
+                      <script src="./assets/js/pointer_focus.js"></script>
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                          // Gọi hàm focusOnInput với id của phần tử input cần focus
+                          focusOnInput('employeeName');
+                        });
+                      </script>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Số điện thoại</label>
+                    <div class="form-wrap">
+                      <input id="phoneNumber" class="form-control" type="tel" placeholder="0123-456-789"
+                        pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required maxlength="12" />
+                    </div>
+                    <script src="./assets/js/format_number_input.js"></script>
+                    <script>
+                      document.getElementById("phoneNumber").addEventListener('input', function(){
+                        formatInputPhoneNumber("phoneNumber");
+                      });
+                    </script>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Chi nhánh trả lương</label>
+                    <div class="form-wrap">
+                      <div class="select-salary-branch">
+                        <input id="salaryBranch" class="form-control" role="listbox" value="Chi nhánh trung tâm">
+                        <i id="salaryBranchSortDownIcon" class="salary-branch-icon fas fa-solid fa-sort-down"></i>
+                      </div>
+                      <div id="branchListId" class="form-list branch-list-items">
+                        <ul id="branchItemsId" class="form-items">
+                          <div class="select-salary-branch-search">
+                            <input class="form-control" id="searchSalaryBranch">
+                            <i id="searchSalaryBranchIcon" class="fas fa-solid fa-search"></i>
+                          </div>
+
+                          <li class="form-item">
+                            <span class="item-name branch-name">Chi nhánh trung tâm</span>
+                            <i class="fas fa-solid fa-check"></i>
+                          </li>
+
+                          <li class="form-item">
+                            <span class="item-name branch-name">Địa điểm kinh doanh</span>
+                            <i class="fas fa-solid fa-check"></i>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <script src="./assets/js/search_branch_form.js"></script>
+
+                  <div class="form-group">
+                    <label class="form-label">Chi nhánh làm việc</label>
+                    <div class="form-wrap">
+                      <input id="workingBranch" class="form-control" value="Chi nhánh trung tâm" />
+                      <div id="locationListId" class="form-list location-list-items">
+                        <ul class="form-items">
+                          <li class="form-item">
+                            <span class="item-name location-name">Chi nhánh trung tâm</span>
+                            <i class="fas fa-solid fa-check"></i>
+                          </li>
+
+                          <li class="form-item">
+                            <span class="item-name location-name">Địa điểm kinh doanh</span>
+                            <i class="fas fa-solid fa-check"></i>
+                          </li>
+                        </ul>
+                      </div>
+                      <script src="./assets/js/search_input.js"></script>
+                      <script src="./assets/js/toggle_list_display_hide.js"></script>
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                          toggleListDisplayHide('workingBranch', 'locationListId', '.location-name');
+                        });
+                      </script>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- button add more information -->
+                <button class="btn btn-form" id="toggleButton">
+                  <span>Thêm thông tin</span>
+                  <i class="btn-form-icon fas fa-solid fa-angle-down"></i>
+                </button>
+                <script src="./assets/js/hide_show_info.js"></script>
+
+                <div class="hide-show-information" id="hideShowInformation">
+                  <!-- Work information -->
+                  <div class="information-group work-information">
+                    <div class="information-title">
+                      <span class="info-heading info-heading-add-employee">Thông tin công việc</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Ngày bắt đầu làm việc</label>
+                      <div class="form-wrap">
+                        <input id="firstDay" class="form-control" type="datetime-local" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Phòng ban</label>
+                      <div class="form-wrap">
+                        <input id="employeeDepartment" class="form-control" type="text" placeholder="Chọn phòng ban" />
+                        <div class="group-icon-add-new">
+                          <i href="#" class="show-hide-icon fas fa-solid fa-sort-down"
+                            id="hideAddDepartmentFormEmployee"></i>
+                          <a href="#" class="add-department-icon btn-icon add-group-product fas fa-solid fa-plus"
+                            title="Thêm phòng ban mới" id="addNewDepartmentFormAddEmployee"></a>
+                          <script src="./assets/js/btn_show_div.js"></script>
+                          <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                              showDiv("addNewDepartmentFormAddEmployee", ".add-new-department");
+                            });
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Chức danh</label>
+                      <div class="form-wrap">
+                        <input id="employeePosition" class="form-control" type="text" placeholder="Chọn chức danh" />
+                        <div class="group-icon-add-new">
+                          <i href="#" class="show-hide-icon fas fa-solid fa-sort-down"
+                            id="hideAddPositionFormEmployee"></i>
+                          <a href="#" class="add-position-icon btn-icon add-group-product fas fa-solid fa-plus"
+                            title="Thêm chức danh mới" id="addNewPositionFormAddEmployee"></a>
+                            <script src="./assets/js/btn_show_div.js"></script>
+                          <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                              showDiv("addNewPositionFormAddEmployee", ".add-new-position");
+                            });
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Tài khoản đăng nhập</label>
+                      <div class="form-wrap">
+                        <input id="accountNumber" class="form-control" type="text" placeholder="Chọn tài khoản" />
+                        <div class="group-icon-add-new">
+                          <i href="#" class="show-hide-icon fas fa-solid fa-sort-down"
+                            id="hideAddAccountFormEmployee"></i>
+                          <a href="#" class="add-account-icon btn-icon add-group-product fas fa-solid fa-plus"
+                            title="Thêm tài khoản mới" id="addNewAccountFormAddEmployee"></a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Ghi chú</label>
+                      <div class="form-wrap">
+                        <input id="employeeNote" class="form-control" type="text" />
+                        <i class="note-pen fas fa-solid fa-pen"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Personal information -->
+                  <div class="information-group">
+                    <div class="information-title">
+                      <span class="info-heading info-heading-add-employee">Thông tin cá nhân</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Số CMND/CCCD</label>
+                      <div class="form-wrap">
+                        <input id="idCard" class="form-control" type="number" placeholder="012345678901"
+                          maxlength="12" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Ngày sinh</label>
+                      <div class="form-wrap">
+                        <input id="dateOfBirth" class="form-control" type="date" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="employeeGender" class="form-label">Giới tính</label>
+                      <input id="employeeGender" type="text">
+                      <div class="form-wrap" id="formWrapGender">
+                        <input type="radio" id="employeeMale" name="gender" class="" value="Nam" />
+                        <label for="employeeMale">Nam</label>
+                        <input type="radio" id="employeeFemale" name="gender" class="" value="Nữ" />
+                        <label for="employeeFemale">Nữ</label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Contact info -->
+                  <div class="information-group">
+                    <div class="information-title">
+                      <span class="info-heading info-heading-add-employee">Thông tin liên hệ</span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label class="form-label">Địa chỉ</label>
+                      <div class="form-wrap">
+                        <input id="employeeAddress" class="form-control" type="text" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Khu vực</label>
+                      <div class="form-wrap">
+                        <input id="employeeArea" class="form-control" type="text"
+                          placeholder="Chọn Tỉnh/TP - Quận/Huyện" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Email</label>
+                      <div class="form-wrap">
+                        <input id="employeeEmail" class="form-control" type="email" placeholder="admin@gmail.com" required/>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Phường xã</label>
+                      <div class="form-wrap">
+                        <input id="communeWard" class="form-control" type="text" placeholder="Chọn Phường/Xã" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label">Facebook</label>
+                      <div class="form-wrap">
+                        <input id="employeeFacebook" class="form-control" type="text" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- add employee bottom -->
+          <div class="add-employee-bottom">
+            <button id="btnSaveApplicationEmployee" class="btn btn-success btn-success-bottom">
+              <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+              <span>Lưu</span>
+            </button>
+            <button class="btn btn-default btn-default-bottom" id="cancelAddEmployee">
+              <i class="btn-success-icon fas fa-solid fa-ban"></i>
+              <span>Bỏ qua</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- set salary -->
+        <div class="set-salary" id="setSalary">
+
+          <!-- set salary container -->
+          <div class="set-salary-container">
+            <div class="pay-rate">
+              <div class="pay-rate-group">
+
+                <!-- pay rate header -->
+                <div class="pay-rate-group-head header">
+                  <div class="pay-rate-group-head-title header-title">
+                    <i class="pay-rate-group-icon fas fa-solid fa-money-check-dollar"></i>
+                    <span class="span-heading">Nhân viên</span>
+                  </div>
+
+                  <!-- pay content -->
+                  <div class="pay-content">
+                    <div class="pay-content-select">
+                      <div class="pay-rate-select-content">
+                        <label class="form-label" for="salaryType">Loại lương</label>
+                        <div class="form-label-icon">
+                          <select class="salary-type form-select" name="salary-type" id="salaryType"
+                            aria-placeholder="---Chọn loại lương---">
+                            <option value="salaryDefault">---Chọn loại lương---</option>
+                            <option value="workShift">Theo ca làm việc</option>
+                            <option value="workingHour">Theo giờ làm việc</option>
+                            <option value="workingDay">Theo ngày công chuẩn</option>
+                            <option value="fixedSalary">Cố định</option>
+                          </select>
+                          <i class="salary-type-icon  fa fa-solid fa-circle-info"></i>
+                        </div>
+                      </div>
+
+                      <div class="pay-rate-select-content">
+                        <label class="form-label" for="salaryRate">Mức lương</label>
+                        <div class="form-label-icon">
+                          <input class="salary-rate form-input" name="salary-rate" id="salaryRate">
+                          </input>
+                          <span class="form-span salary-rate-span">/kỳ lương</span>
+                          <button class="btn-toggle btn-toggle-salary" id="btnToggleSetSalary">
+                            <i class="salary-rate-icon fa fa-solid fa-ellipsis-v"></i>
+                          </button>
+                          <script src="./assets/js/btn_toggle_bgc.js"></script>
+                          <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                              toggleButtonDiv('btnToggleSetSalary', '.table-set-salary-application');
+                            });
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- table set salary-->
+                    <div class="table-set-salary-application table-application-container">
+                      <table class="employee-table-list table-salary">
+                        <thead class="table-header-salary">
+                          <tr class="table-row-header-salary">
+                            <th class="table-title-salary"></th>
+                            <th class="weekdays"><span>Ngày thường</span></th>
+                            <th class="saturday"><span>Thứ 7</span></th>
+                            <th class="sunday"><span>Chủ nhật</span></th>
+                            <th class="day-off"><span>Ngày nghỉ</span></th>
+                            <th class="holidays"><span>Ngày lễ tết</span></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          <tr class="table-row-data-salary">
+                            <td class="table-title-salary"><span>Hệ số lương trên giờ</span></td>
+                            <td class="weekdays">
+                              <div class="row-data-salary">
+                                <input id="priceWeekDays" type="number" placeholder="150" class="hide-spinner">
+                                <!-- price toggle -->
+                                <label for="priceWeekDays" class="price-toggle">
+                                  <div class="btn-price-toggle">
+                                    <button class="btn btn-VND btn-default">
+                                      <span>VND</span>
+                                    </button>
+                                    <button class="btn btn-percent btn-success">
+                                      <span>%</span>
+                                    </button>
+                                  </div>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="saturday">
+                              <div class="row-data-salary">
+                                <input id="saturday" type="number" placeholder="200" class="hide-spinner">
+                                <!-- price toggle -->
+                                <label for="priceSaturday" class="price-toggle">
+                                  <div class="btn-price-toggle">
+                                    <button class="btn btn-VND btn-default">
+                                      <span>VND</span>
+                                    </button>
+                                    <button class="btn btn-percent btn-success">
+                                      <span>%</span>
+                                    </button>
+                                  </div>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="sunday">
+                              <div class="row-data-salary">
+                                <input id="priceSunday" type="number" placeholder="200" class="hide-spinner">
+                                <!-- price toggle -->
+                                <label for="priceSunday" class="price-toggle">
+                                  <div class="btn-price-toggle">
+                                    <button class="btn btn-VND btn-default">
+                                      <span>VND</span>
+                                    </button>
+                                    <button class="btn btn-percent btn-success">
+                                      <span>%</span>
+                                    </button>
+                                  </div>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="day-off">
+                              <div class="row-data-salary">
+                                <input id="priceDayOff" type="number" placeholder="200" class="hide-spinner">
+                                <!-- price toggle -->
+                                <label for="priceDayOff" class="price-toggle">
+                                  <div class="btn-price-toggle">
+                                    <button class="btn btn-VND btn-default">
+                                      <span>VND</span>
+                                    </button>
+                                    <button class="btn btn-percent btn-success">
+                                      <span>%</span>
+                                    </button>
+                                  </div>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="holidays">
+                              <div class="row-data-salary">
+                                <input id="priceHolidays" type="number" placeholder="300" class="hide-spinner">
+                                <!-- price toggle -->
+                                <label for="priceHolidays" class="price-toggle">
+                                  <div class="btn-price-toggle">
+                                    <button class="btn btn-VND btn-default">
+                                      <span>VND</span>
+                                    </button>
+                                    <button class="btn btn-percent btn-success">
+                                      <span>%</span>
+                                    </button>
+                                  </div>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- pay rate standard -->
+                <div class="pay-rate-standard">
+                  <div class="pay-set-salary-rate-standard">
+                    <label for="btnToggleSetRate" class="toggle-standard">Lương làm thêm giờ</label>
+                    <button class="btn-toggle btn-toggle-standard" id="btnToggleSetRate">
+                      <i class="btn-toggle-icon fas fa-solid fa-circle"></i>
+                    </button>
+                    <script src="./assets/js/btn_toggle_standard.js"></script>
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function () {
+                        toggleButtonContainer('btnToggleSetRate', '.table-salary-application');
+                      });
+                    </script>
+                  </div>
+
+                  <!-- table overtime salary-->
+                  <div class="table-salary-application table-application-container">
+                    <table class="employee-table-list table-salary">
+                      <thead class="table-header-salary">
+                        <tr class="table-row-header-salary">
+                          <th class="table-title-salary"></th>
+                          <th class="weekdays"><span>Ngày thường</span></th>
+                          <th class="saturday"><span>Thứ 7</span></th>
+                          <th class="sunday"><span>Chủ nhật</span></th>
+                          <th class="day-off"><span>Ngày nghỉ</span></th>
+                          <th class="holidays"><span>Ngày lễ tết</span></th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-body">
+                        <tr class="table-row-data-salary">
+                          <td class="table-title-salary"><span>Hệ số lương trên giờ</span></td>
+                          <td class="weekdays">
+                            <div class="row-data-salary">
+                              <input id="priceWeekDays" type="number" placeholder="150" class="hide-spinner">
+                              <!-- price toggle -->
+                              <label for="priceWeekDays" class="price-toggle">
+                                <div class="btn-price-toggle">
+                                  <button class="btn btn-VND btn-default">
+                                    <span>VND</span>
+                                  </button>
+                                  <button class="btn btn-percent btn-success">
+                                    <span>%</span>
+                                  </button>
+                                </div>
+                              </label>
+                            </div>
+                          </td>
+                          <td class="saturday">
+                            <div class="row-data-salary">
+                              <input id="saturday" type="number" placeholder="200" class="hide-spinner">
+                              <!-- price toggle -->
+                              <label for="priceSaturday" class="price-toggle">
+                                <div class="btn-price-toggle">
+                                  <button class="btn btn-VND btn-default">
+                                    <span>VND</span>
+                                  </button>
+                                  <button class="btn btn-percent btn-success">
+                                    <span>%</span>
+                                  </button>
+                                </div>
+                              </label>
+                            </div>
+                          </td>
+                          <td class="sunday">
+                            <div class="row-data-salary">
+                              <input id="priceSunday" type="number" placeholder="200" class="hide-spinner">
+                              <!-- price toggle -->
+                              <label for="priceSunday" class="price-toggle">
+                                <div class="btn-price-toggle">
+                                  <button class="btn btn-VND btn-default">
+                                    <span>VND</span>
+                                  </button>
+                                  <button class="btn btn-percent btn-success">
+                                    <span>%</span>
+                                  </button>
+                                </div>
+                              </label>
+                            </div>
+                          </td>
+                          <td class="day-off">
+                            <div class="row-data-salary">
+                              <input id="priceDayOff" type="number" placeholder="200" class="hide-spinner">
+                              <!-- price toggle -->
+                              <label for="priceDayOff" class="price-toggle">
+                                <div class="btn-price-toggle">
+                                  <button class="btn btn-VND btn-default">
+                                    <span>VND</span>
+                                  </button>
+                                  <button class="btn btn-percent btn-success">
+                                    <span>%</span>
+                                  </button>
+                                </div>
+                              </label>
+                            </div>
+                          </td>
+                          <td class="holidays">
+                            <div class="row-data-salary">
+                              <input id="priceHolidays" type="number" placeholder="300" class="hide-spinner">
+                              <!-- price toggle -->
+                              <label for="priceHolidays" class="price-toggle">
+                                <div class="btn-price-toggle">
+                                  <button class="btn btn-VND btn-default">
+                                    <span>VND</span>
+                                  </button>
+                                  <button class="btn btn-percent btn-success">
+                                    <span>%</span>
+                                  </button>
+                                </div>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- pay update -->
+              <div class="pay-rate-update">
+                <button id="btnCreatTemplate" class="btn btn-success">
+                  <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                  <span>Tạo mới mẫu lương</span>
+                </button>
+                <script src="./assets/js/btn_focus_show.js"></script>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    toggleDisplay('btnCreatTemplate', '.new-application', 'applicationNewName');
+                  });
+                </script>
+
+
+                <span class="otherSpan">Hoặc</span>
+
+                <div class="pay-rate-form">
+                  <label class="form-label" for="rateType"></label>
+                  <div class="form-label-select">
+                    <select class="form-rate-type form-select" name="rate-type" id="rateType"
+                      aria-placeholder="Chọn mẫu lương hiện có">
+                      <option value="payDefault">Chọn mẫu lương hiện có</option>
+                      <option value="rateDefault">Nhân viên chính thức</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- add employee bottom -->
+            <div class="add-employee-bottom">
+              <button id="btnSaveSetSalary" class="btn btn-success btn-success-bottom">
+                <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                <span>Lưu</span>
+              </button>
+              <script src="./assets/js/toast.js"></script>
+              <script src="./assets/js/creat_employee.js"></script>
+              <script src="./assets/js/validation.js"></script>
+              <script src="./assets/js/validation_is_exists.js"></script>
+              <script src="./assets/js/validation_is_exists_add.js"></script>
+              <script src="./assets/js/validation_is_exists_edit.js"></script>
+              <script src="./assets/js/btn_close_id.js"></script>
+              <script src="./assets/js/add_local_storage_employee.js"></script>
+              <script src="./assets/js/edit_employee_clear_data.js"></script>
+              <script src="./assets/js/edit_employee.js"></script>
+
+              <button class="btn btn-default btn-default-bottom" id="cancelSetSalary">
+                <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                <span>Bỏ qua</span>
+              </button>
+              <script src="./assets/js/btn_close_id.js"></script>
+              <script>
+                // Add event listener to the addEmployeeButton button
+                document.addEventListener(
+                  "DOMContentLoaded",
+                  function () {
+                    closeButtonId(
+                      "cancelSetSalary",
+                      "addEmployee"
+                    );
+                  }
+                );
+              </script>
+            </div>
+          </div>
+
+        </div>
+        <!-- add new application -->
+        <div class="new-application" id="newApplication">
+          <div class="mask mask-2"></div>
+
+          <!-- add new application form container -->
+          <div class="new-application-container">
+            <!-- add new application form -->
+            <div class="new-application-head">
+
+              <!-- new application form header -->
+              <div class="new-application-heading application-heading">
+                <div class="new-application-head-title head-title">
+                  <span class="span-heading">Thêm mới mẫu áp dụng</span>
+                  <div class="new-application-head-icon">
+                    <i class="head-icon fas fa-solid fa-close" id="closeNewApplication"></i>
+                  </div>
+                  <script src="./assets/js/btn_close.js"></script>
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                      closeButton('closeNewApplication', '.new-application');
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!-- new-application form container -->
+            <div class="new-application-form-container">
+              <!-- new application name -->
+              <div class="new-application-name">
+                <label for="applicationNewName" class="new-application-name-title form-control">Mẫu áp dụng</label>
+                <input class="new-application-name-input" name="application-new-name" id="applicationNewName"
+                  placeholder="Vd: Mẫu lương nhân viên hành chính">
+              </div>
+
+              <!-- add new application form group-->
+              <div class="new-application-form-group">
+
+                <!-- form commission -->
+                <div class="new-application-form">
+                  <!-- new application content -->
+                  <div class="new-application-content">
+                    <div class="new-application-commission-content">
+                      <div class="new-application-toggle commission-pay">
+                        <label for="btnToggleCommissionPay" class="commission-pay-label toggle-standard">Hoa
+                          hồng</label>
+                        <button class="btn-toggle btn-toggle-standard" id="btnToggleCommissionPay">
+                          <i class="btn-toggle-icon fas fa-solid fa-circle"></i>
+                        </button>
+                        <script src="./assets/js/btn_toggle_standard.js"></script>
+                        <script>
+                          document.addEventListener('DOMContentLoaded', function () { toggleButtonContainer('btnToggleCommissionPay', '.table-commission-application'); });
+                        </script>
+                      </div>
+                    </div>
+
+                    <!-- table commission application-->
+                    <div class="table-commission-application table-application-container">
+                      <table class="employee-table-list table-application">
+                        <thead class="table-header-application">
+                          <tr class="table-row-header-application">
+                            <th class="table-type-application"><span>Loại hình</span></th>
+                            <th class="table-origin-application"><span>Doanh thu thuần</span></th>
+                            <th class="table-commission-application"><span>Hoa hồng thụ hưởng</span>
+                            </th>
+                            <th class="table-icon-add-remove"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          <tr class="table-row-data-application">
+                            <td class="table-type-application"><span>Tư vấn bán hàng</span></td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>Từ</span>
+                                <span>10000000</span>
+                              </div>
+
+                            </td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>Hoa hồng</span>
+                                <span>10%</span>
+                              </div>
+                            </td>
+                            <td class="table-icon-add-remove">
+                              <div class="table-icon-add-remove">
+                                <i class="icon-add fas fa-solid fa-pen"></i>
+                                <i class="icon-remove fas fa-solid fa-trash-can"></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="add-condition">
+                        <button id="addCondition" class="btn btn-condition">
+                          <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                          <span>Thêm điều kiện</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- form reward -->
+                <div class="new-application-form">
+                  <!-- new application content -->
+                  <div class="new-application-content">
+                    <div class="new-application-reward-content">
+                      <div class="new-application-toggle reward-pay">
+                        <label for="rewardType" class="reward-pay-label toggle-standard">Thưởng</label>
+                        <div class="form-label-select">
+                          <select class="form-reward-type form-select" name="reward-type" id="rewardType"
+                            aria-placeholder="---Chọn loại thưởng---">
+                            <option value="rewardDefault">---Chọn loại thưởng---</option>
+                            <option value="rewardDefault">Theo doanh thu cá nhân</option>
+                            <option value="rewardDefault">Theo doanh thu chi nhánh/Cửa hàng</option>
+                            <option value="rewardDefault">Theo lợi nhuận gộp cá nhân</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="new-application-toggle method-pay">
+                        <label for="methodType" class="method-pay-label toggle-standard">Hình thức</label>
+                        <div class="form-label-icon">
+                          <select class="form-method-type form-select" name="method-type" id="methodType"
+                            aria-placeholder="---Chọn hình thức thưởng---">
+                            <option value="methodDefault">---Chọn hình thức thưởng---</option>
+                            <option value="methodDefault">Tính theo mức tổng doanh thu</option>
+                            <option value="methodDefault">Tính theo nấc bậc thang tổng doanh thu</option>
+                            <option value="methodDefault">Tính theo mức vượt doanh thu tối thiểu</option>
+                          </select>
+                          <i class="salary-type-icon  fa fa-solid fa-circle-info"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- table reward application-->
+                    <div class="table-application-container">
+                      <table class="employee-table-list table-application">
+                        <thead class="table-header-application">
+                          <tr class="table-row-header-application">
+                            <th class="table-type-application"><span>Loại hình</span></th>
+                            <th class="table-origin-application"><span>Doanh thu thuần</span></th>
+                            <th class="table-reward-application"><span>Thưởng</span></th>
+                            <th class="table-icon-add-remove"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          <tr class="table-row-data-application">
+                            <td class="table-type-application"><span>Tư vấn bán hàng</span></td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>Từ</span>
+                                <span>10000000</span>
+                              </div>
+                            </td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>10%</span>
+                                <span>Doanh thu</span>
+                              </div>
+                            </td>
+                            <td class="table-icon-add-remove">
+                              <div class="table-icon-add-remove">
+                                <i class="icon-add fas fa-solid fa-pen"></i>
+                                <i class="icon-remove fas fa-solid fa-trash-can"></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="add-condition">
+                        <button id="addCondition" class="btn btn-condition">
+                          <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                          <span>Thêm điều kiện</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- form allowance -->
+                <div class="new-application-form">
+                  <!-- new application content -->
+                  <div class="new-application-content">
+                    <div class="new-application-allowance-content">
+                      <div class="new-application-toggle allowance-pay">
+                        <label for="btnToggleAllowancePay" class="allowance-pay-label toggle-standard">Phụ
+                          cấp</label>
+                        <button class="btn-toggle btn-toggle-standard" id="btnToggleAllowancePay">
+                          <i class="btn-toggle-icon fas fa-solid fa-circle"></i>
+                        </button>
+                        <script src="./assets/js/btn_toggle_standard.js"></script>
+                        <script>
+                          document.addEventListener('DOMContentLoaded', function () { toggleButtonContainer('btnToggleAllowancePay', '.table-allowance-application'); });
+                        </script>
+                      </div>
+                    </div>
+
+                    <!-- table allowance application-->
+                    <div class="table-allowance-application table-application-container">
+                      <table class="employee-table-list table-application">
+                        <thead class="table-header-application">
+                          <tr class="table-row-header-application">
+                            <th class="table-type-application"><span>Tên phụ cấp</span></th>
+                            <th class="table-origin-application"><span>Doanh thu thuần</span></th>
+                            <th class="table-allowance-application"><span>Loại phụ cấp</span>
+                            </th>
+                            <th class="table-icon-add-remove"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          <tr class="table-row-data-application">
+                            <td></td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>100000</span>
+                                <span>VND</span>
+                              </div>
+
+                            </td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>Phụ cấp cho mỗi ngày làm việc</span>
+                              </div>
+                            </td>
+                            <td class="table-icon-add-remove">
+                              <div class="table-icon-add-remove">
+                                <i class="icon-add fas fa-solid fa-pen"></i>
+                                <i class="icon-remove fas fa-solid fa-trash-can"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="table-type-application">
+                              <div class="allowance-pay">
+                                <div class="form-label-select">
+                                  <select class="form-allowance-type form-select" name="allowance-type"
+                                    id="allowanceType" aria-placeholder="---Chọn loại thưởng---">
+                                    <option value="allowanceDefault">---Chọn loại phụ cấp---</option>
+                                    <option value="allowancePetrol">Xăng xe</option>
+                                    <option value="allowanceLunch">Ăn trưa</option>
+                                    <option value="allowanceAirline">Vé máy bay</option>
+                                  </select>
+                                </div>
+                                <label for="allowanceType" class="allowance-pay-label toggle-standard"></label>
+                              </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="add-condition">
+                        <button id="addCondition" class="btn btn-condition">
+                          <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                          <span>Thêm phụ cấp</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- form decrease -->
+                <div class="new-application-form">
+                  <!-- new application content -->
+                  <div class="new-application-content">
+                    <div class="new-application-decrease-content">
+                      <div class="new-application-toggle decrease-pay">
+                        <label for="btnToggleDecreasePay" class="decrease-pay-label toggle-standard">Giảm
+                          trừ</label>
+                        <button class="btn-toggle btn-toggle-standard" id="btnToggleDecreasePay">
+                          <i class="btn-toggle-icon fas fa-solid fa-circle"></i>
+                        </button>
+                        <script src="./assets/js/btn_toggle_standard.js"></script>
+                        <script>
+                          document.addEventListener('DOMContentLoaded', function () {
+                            toggleButtonContainer('btnToggleDecreasePay', '.table-decrease-application');
+                          });
+                        </script>
+                      </div>
+                    </div>
+
+                    <!-- table decrease application-->
+                    <div class="table-decrease-application table-application-container">
+                      <table class="employee-table-list table-application">
+                        <thead class="table-header-application">
+                          <tr class="table-row-header-application">
+                            <th class="table-type-application"><span>Mã tên giảm trừ</span></th>
+                            <th class="table-origin-application"><span>Khoản giảm trừ</span></th>
+                            <th class="table-condition-application"><span>Điều kiện</span></th>
+                            <th class="table-decrease-application"><span>Loại giảm trừ</span></th>
+                            <th class="table-icon-add-remove"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          <tr class="table-row-data-application">
+                            <td></td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>10000</span>
+                                <span>VND</span>
+                              </div>
+
+                            </td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>1</span>
+                                <span>phút</span>
+                              </div>
+                            </td>
+                            <td class="table-origin-application">
+                              <div class="row-data-salary">
+                                <span>Đi muộn</span>
+                              </div>
+                            </td>
+                            <td class="table-icon-add-remove">
+                              <div class="table-icon-add-remove">
+                                <i class="icon-add fas fa-solid fa-pen"></i>
+                                <i class="icon-remove fas fa-solid fa-trash-can"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="table-type-application">
+                              <div class="decrease-pay">
+                                <div class="form-label-select">
+                                  <select class="form-rate-type form-select" name="decrease-type" id="decreaseType"
+                                    aria-placeholder="---Chọn loại thưởng---">
+                                    <option value="decreaseDefault">---Chọn giảm trừ---</option>
+                                    <option value="decreaseLate">Đi muộn</option>
+                                    <option value="decreaseAbsent">Nghỉ không phép</option>
+                                  </select>
+                                </div>
+                                <label for="decreaseType" class="allowance-pay-label toggle-standard"></label>
+                              </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="add-condition">
+                        <button id="addCondition" class="btn btn-condition">
+                          <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                          <span>Thêm giảm trừ</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- add employee bottom -->
+              <div class="add-employee-bottom">
+                <button class="btn btn-success btn-success-bottom" id="saveSetNewApplicationSalary">
+                  <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                  <span>Lưu</span>
+                </button>
+                <button class="btn btn-default btn-default-bottom" id="cancelSetNewApplicationSalary">
+                  <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                  <span>Bỏ qua</span>
+                </button>
+                <script src="./assets/js/btn_close.js"></script>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    closeButton('cancelSetNewApplicationSalary', '.new-application');
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <script src="./assets/js/sort_content_table.js"></script> -->
+  <script src="./assets/js/to_top.js"></script>
+  <script src="./assets/js/select_number_of_records.js"></script>
+
+  <div id="toast"></div>
+  <script src="./assets/js/toast.js"></script>
+</body>
+
+</html>

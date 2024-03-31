@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KiotViet - Thiết lập giá</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+    <link rel="icon" href="./assets/img/favicon.png" fetchpriority="high" />
+    <script
+      src="https://kit.fontawesome.com/272317828a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/to_top.js"></script>
+    <script src="./assets/js/creatId.js"></script>
+    <script src="./assets/js/search_input.js"></script>
+    <script src="./assets/js/toggle_list_display.js"></script>
+    <script src="./assets/js/btn_show_div.js"></script>
+    <script src="./assets/js/btn_close.js"></script>
+    <script src="./assets/js/toast.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/check_box.css" />
+    <link rel="stylesheet" href="./assets/css/price_book.css" />
+  </head>
+
+  <body>
+    <!-- main header -->
+    <header id="mainHeader"></header>
+    <script src="./assets/js/main_header.js"></script>
+
+    <!-- section price-book -->
+    <section class="price-book" id="sectionPriceBook">
+      <div class="container">
+        <div class="price-book-main-body">
+          <!-- body left -->
+          <div class="price-book-main-left">
+            <div class="em-left-header">
+              <h1 class="em-left-heading">Bảng giá chung</h1>
+            </div>
+
+                        <!-- supplier -->
+                        <div class="em-left-content content-supplier">
+                          <div class="em-left-content-title">
+                            <h3 class="em-left-content-heading">Bảng giá</h3>
+                            <div class="em-left-content-icon icon-supplier">
+                              <a
+                                href="#"
+                                class="add-supplier-icon btn-icon add-group-price-book fas fa-solid fa-plus-circle"
+                                title="Thêm nhà cung cấp mới"
+                                id="addNewSupplier"
+                              ></a>
+                              <script src="./assets/js/btn_show_div.js"></script>
+                              <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                  showDiv("addNewSupplier", ".add-new-supplier");
+                                });
+                              </script>
+                            </div>
+                          </div>
+            
+                          <div class="supplier-list">
+                            <input
+                              type="search"
+                              id="supplierListSearch"
+                              class="hide-show-supplier"
+                              placeholder="Bảng giá chung"
+                            />
+                            <div id="supplierListId" class="supplier-list-items">
+                              <ul class="form-items">
+                                <li class="form-item">
+                                  <span class="item-name supplier-name">Hàng hóa</span>
+                                  <i id="showEditSupplier" class="fas fa-solid fa-pen"></i>
+                                </li>
+            
+                                <li class="form-item">
+                                  <span class="item-name supplier-name"
+                                    >Dịch vụ</span
+                                  >
+                                  <i class="fas fa-solid fa-pen"></i>
+                                </li>
+
+                                <li class="form-item">
+                                  <span class="item-name supplier-name"
+                                    >Combo - đóng gói</span
+                                  >
+                                  <i class="fas fa-solid fa-pen"></i>
+                                </li>
+                              </ul>
+            
+                              <script src="./assets/js/search_input.js"></script>
+                              <script src="./assets/js/toggle_list_display.js"></script>
+                              <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                  toggleListDisplay(
+                                    "supplierListSearch",
+                                    "supplierListId",
+                                    ".supplier-name"
+                                  );
+                                });
+                              </script>
+                            </div>
+                            <script src="./assets/js/search_input.js">
+                              document.addEventListener("DOMContentLoaded", function () {
+                                  searchsupplier("supplierListSearch", "supplierListId");
+                              });
+                            </script>
+                            <script src="./assets/js/search_supplier_table.js"></script>
+            
+                            <!-- add-new-supplier -->
+                            <!-- <div class="add-new-supplier" id="addNewSupplierForm">
+                            <div class="mask mask-supplier">
+                              <div class="add-new-supplier-container">
+                                <div class="add-supplier-title">
+                                  <span class="new-supplier-title">Thêm mới nhà cung cấp</span>
+                                  <i id="closeCreatSupplier" class="form-close-icon fas fa-solid fa-close"></i>
+                                  <script src="./assets/js/btn_close.js"></script>
+                                  <script>
+                                    document.addEventListener(
+                                      "DOMContentLoaded",
+                                      function () {
+                                        closeButton(
+                                          "closeCreatSupplier",
+                                          ".add-new-supplier"
+                                        );
+                                      }
+                                    );
+                                  </script>
+                                </div>
+            
+                                <div class="add-supplier-body">
+                                  <div class="form-group group-supplier-location">
+                                    <label for="supplierName">Tên nhà cung cấp</label>
+                                    <div class="form-wrap">
+                                      <input type="text" id="supplierName" class="form-control" required />
+                                    </div>
+                                  </div>
+                                  <div class="form-group group-supplier-location">
+                                    <label for="supplierDesc">Mô tả</label>
+                                    <div class="form-wrap supplier-area-input">
+                                      <i class="supplier-icon-inside fas fa-solid fa-pen"></i>
+                                      <textarea id="supplierDesc" class="form-control" rows="1"></textarea>
+                                    </div>
+                                  </div>
+                                  <div class="form-group group-supplier-location">
+                                    <label for="supplierActive supplierInactive">Trạng thái</label>
+                                    <input type="text" id="supplierStatus" />
+                                    <div class="form-wrap">
+                                      <label for="supplierActive" class="label-status">
+                                        <input type="radio" name="isActivesupplier" id="supplierActive" class="form-control-radio"
+                                          value="true" checked />
+                                        <span>Hoạt động</span>
+                                      </label>
+                                      <label for="supplierInactive" class="label-status">
+                                        <input type="radio" name="isActivesupplier" id="supplierInactive" class="form-control-radio"
+                                          value="false" />
+                                        <span>Ngừng hoạt động</span>
+                                      </label>
+                                    </div>
+                                  </div> -->
+                            <!-- add btn bottom -->
+                            <!-- <div class="add-btn-bottom">
+                                    <button class="btn btn-success btn-success-bottom" id="btnSavesupplier">
+                                      <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                                      <span>Lưu</span>
+                                    </button>
+                                    <script src="./assets/js/toast.js"></script>
+                                    <script src="./assets/js/creat_supplier.js"></script>
+                                    <script src="./assets/js/add_local_storage_supplier.js"></script>
+                                    <script src="./assets/js/show_list_supplier.js"></script>
+            
+                                    <button id="cancelCreatsupplier" class="btn btn-default btn-default-bottom">
+                                      <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                                      <span>Bỏ qua</span>
+                                    </button>
+                                    <script src="./assets/js/btn_close.js"></script>
+                                    <script>
+                                      document.addEventListener(
+                                        "DOMContentLoaded",
+                                        function () {
+                                          closeButton(
+                                            "cancelCreatsupplier",
+                                            ".add-new-supplier"
+                                          );
+                                        }
+                                      );
+                                    </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+            
+                            <!-- add-edit-supplier -->
+                            <!-- <div class="add-edit-supplier">
+                            <div class="mask mask-supplier">
+                              <div class="add-edit-supplier-container">
+                                <div class="add-supplier-title">
+                                  <span class="edit-supplier-title">Cập nhật nhà cung cấp</span>
+                                  <i id="closeEditsupplier" class="form-close-icon fas fa-solid fa-close"></i>
+                                </div>
+            
+                                <div class="add-supplier-body">
+                                  <div class="form-group">
+                                    <label for="supplierNameEdit">Tên nhà cung cấp</label>
+                                    <div class="form-wrap">
+                                      <input type="text" id="supplierNameEdit" class="form-control" required />
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="supplierDescEdit">Mô tả</label>
+                                    <div class="form-wrap supplier-area-input">
+                                      <i class="supplier-icon-inside fas fa-solid fa-pen"></i>
+                                      <textarea id="supplierDescEdit" class="form-control" rows="1"></textarea>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="supplierStatusEdit">Trạng thái</label>
+                                    <input type="text" name="" id="supplierStatusEdit" />
+                                    <div class="form-wrap">
+                                      <label for="supplierActiveEdit" class="label-status">
+                                        <input type="radio" name="isActivesupplierEdit" id="supplierActiveEdit"
+                                          class="form-control-radio" value="true" />
+                                        <span>Hoạt động</span>
+                                      </label>
+                                      <label for="supplierInactiveEdit" class="label-status">
+                                        <input type="radio" name="isActivesupplierEdit" id="supplierInactiveEdit"
+                                          class="form-control-radio" value="false" />
+                                        <span>Ngừng hoạt động</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <script src="./assets/js/btn_close.js"></script>
+                                  <script>
+                                    document.addEventListener(
+                                      "DOMContentLoaded",
+                                      function () {
+                                        closeButton(
+                                          "closeEditsupplier",
+                                          ".add-edit-supplier"
+                                        );
+                                      }
+                                    );
+                                  </script> -->
+            
+                            <!-- add btn bottom -->
+                            <!-- <div class="add-btn-bottom">
+                                    <button class="btn btn-success btn-success-bottom" id="btnSavesupplierEdit">
+                                      <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                                      <span>Lưu</span>
+                                    </button>
+                                    <button id="cancelEditsupplier" class="btn btn-default btn-default-bottom">
+                                      <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                                      <span>Bỏ qua</span>
+                                    </button>
+                                    <script src="./assets/js/btn_close.js"></script>
+                                    <script>
+                                      document.addEventListener(
+                                        "DOMContentLoaded",
+                                        function () {
+                                          closeButton(
+                                            "cancelEditsupplier",
+                                            ".add-edit-supplier"
+                                          );
+                                        }
+                                      );
+                                    </script>
+                                    <button id="showRemovesupplier" class="btn btn-red btn-red-bottom">
+                                      <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                                      <span>Xóa</span>
+                                    </button>
+                                    <script src="./assets/js/btn_show_div.js"></script>
+                                    <script>
+                                      document.addEventListener(
+                                        "DOMContentLoaded",
+                                        function () {
+                                          showDiv(
+                                            "showRemovesupplier",
+                                            ".add-remove-supplier"
+                                          );
+                                        }
+                                      );
+                                    </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <script src="./assets/js/edit_remove_supplier.js"></script> -->
+            
+                            <!-- add-remove-supplier -->
+                            <!-- <div class="add-remove-supplier">
+                            <div class="mask mask-supplier">
+                              <div class="add-remove-supplier-container">
+                                <div class="add-supplier-title">
+                                  <span class="remove-supplier-title">Xác nhận</span>
+                                  <i id="closeRemovesupplier" class="form-close-icon fas fa-solid fa-close"></i>
+                                  <script src="./assets/js/btn_close.js"></script>
+                                  <script>
+                                    document.addEventListener(
+                                      "DOMContentLoaded",
+                                      function () {
+                                        closeButton(
+                                          "closeRemovesupplier",
+                                          ".add-remove-supplier"
+                                        );
+                                      }
+                                    );
+                                  </script>
+                                </div>
+            
+                                <div class="add-supplier-body">
+                                  <div class="form-group">
+                                    <p>
+                                      Hệ thống sẽ xóa hoàn toàn
+                                      <span>nhà cung cấp</span> này. Bạn có chắc chắn?
+                                    </p>
+                                  </div> -->
+            
+                            <!-- add btn bottom -->
+                            <!-- <div class="add-btn-bottom">
+                                    <button class="btn btn-success btn-success-bottom" id="acceptsupplierRemove">
+                                      <i class="btn-success-icon fas fa-solid fa-check"></i>
+                                      <span>Đồng ý</span>
+                                    </button>
+                                    <button id="cancelRemovesupplier" class="btn btn-default btn-default-bottom">
+                                      <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                                      <span>Bỏ qua</span>
+                                      <script src="./assets/js/btn_close.js"></script>
+                                      <script>
+                                        document.addEventListener(
+                                          "DOMContentLoaded",
+                                          function () {
+                                            closeButton(
+                                              "cancelRemovesupplier",
+                                              ".add-remove-supplier"
+                                            );
+                                          }
+                                        );
+                                      </script>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                          </div>
+                        </div>
+                        <script src="./assets/js/btn_toggle_rotate.js"></script>
+                        <script>
+                          document.addEventListener("DOMContentLoaded", function () {
+                            toggleButtonDivContent(
+                              "hideAddsupplier",
+                              ".hide-show-supplier",
+                              ".icon-supplier"
+                            );
+                          });
+                        </script>
+
+            <!-- product-group -->
+            <div class="em-left-content content-product-group">
+              <div class="em-left-content-title">
+                <h3 class="em-left-content-heading">Nhóm hàng</h3>
+                <div class="em-left-content-icon icon-product-group">
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddProductGroup"
+                  ></i>
+                </div>
+              </div>
+
+              <div class="product-group-list">
+                <div class="product-group-icon-input">
+                  <i
+                    class="product-group-search-icon fas fa-solid fa-search"
+                  ></i>
+                  <input
+                    type="search"
+                    id="productGroupListSearch"
+                    class="form-control hide-show-product-group"
+                    placeholder="Tìm kiếm nhóm hàng"
+                  />
+                </div>
+                <div
+                  id="productGroupListId"
+                  class="product-group-list-items"
+                >
+                  <ul class="form-items">
+                    <li class="form-item">
+                      <span class="item-name product-group-name">Sách</span>
+                      <i
+                        id="showEditproduct-group"
+                        class="fas fa-solid fa-pen"
+                      ></i>
+                    </li>
+
+                    <li class="form-item">
+                      <span class="item-name product-group-name">Kéo</span>
+                      <i class="fas fa-solid fa-pen"></i>
+                    </li>
+                  </ul>
+
+                  <script src="./assets/js/search_input.js"></script>
+                  <script src="./assets/js/toggle_list_display.js"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                      toggleListDisplay(
+                        "productGroupListSearch",
+                        "productGroupListId",
+                        ".product-group-name"
+                      );
+                    });
+                  </script>
+                </div>
+                <script src="./assets/js/search_input.js">
+                  document.addEventListener("DOMContentLoaded", function () {
+                      searchProductGroup("productGroupListSearch", "productGroupListId");
+                  });
+                </script>
+                <!-- <script src="./assets/js/search_product-group_table.js"></script> -->
+
+                <!-- add-new-product-group -->
+                <!-- <div class="add-new-product-group" id="addNewProductGroupForm">
+                <div class="mask mask-product-group">
+                  <div class="add-new-product-group-container">
+                    <div class="add-product-group-title">
+                      <span class="new-product-group-title">Thêm mới nhóm hàng</span>
+                      <i id="closeCreatproduct-group" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeCreatproduct-group",
+                              ".add-new-product-group"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-product-group-body">
+                      <div class="form-group group-price-book-form-main-left">
+                        <label for="productGroupName">Tên nhóm hàng</label>
+                        <div class="form-wrap">
+                          <input type="text" id="productGroupName" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-price-book-form-main-left">
+                        <label for="product-groupDesc">Mô tả</label>
+                        <div class="form-wrap product-group-area-input">
+                          <i class="product-group-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="product-groupDesc" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-price-book-form-main-left">
+                        <label for="product-groupActive product-groupInactive">Trạng thái</label>
+                        <input type="text" id="product-groupStatus" />
+                        <div class="form-wrap">
+                          <label for="product-groupActive" class="label-status">
+                            <input type="radio" name="isActiveproduct-group" id="product-groupActive"
+                              class="form-control-radio" value="true" checked />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="product-groupInactive" class="label-status">
+                            <input type="radio" name="isActiveproduct-group" id="product-groupInactive"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="btnSaveProductGroup">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <script src="./assets/js/toast.js"></script>
+                        <script src="./assets/js/creat_product-group.js"></script>
+                        <script src="./assets/js/add_local_storage_product-group.js"></script>
+                        <script src="./assets/js/show_list_product-group.js"></script>
+
+                        <button id="cancelCreatProductGroup" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelCreatProductGroup",
+                                ".add-new-product-group"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                <!-- add-edit-product-group -->
+                <!-- <div class="add-edit-product-group">
+                <div class="mask mask-product-group">
+                  <div class="add-edit-product-group-container">
+                    <div class="add-product-group-title">
+                      <span class="edit-product-group-title">Cập nhật nhóm hàng</span>
+                      <i id="closeEditProductGroup" class="form-close-icon fas fa-solid fa-close"></i>
+                    </div>
+
+                    <div class="add-product-group-body">
+                      <div class="form-group">
+                        <label for="productGroupNameEdit">Tên nhóm hàng</label>
+                        <div class="form-wrap">
+                          <input type="text" id="productGroupNameEdit" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="productGroupDescEdit">Mô tả</label>
+                        <div class="form-wrap product-group-area-input">
+                          <i class="product-group-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="productGroupDescEdit" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="productGroupStatusEdit">Trạng thái</label>
+                        <input type="text" name="" id="productGroupStatusEdit" />
+                        <div class="form-wrap">
+                          <label for="productGroupActiveEdit" class="label-status">
+                            <input type="radio" name="isActiveProductGroupEdit" id="productGroupActiveEdit"
+                              class="form-control-radio" value="true" />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="productGroupInactiveEdit" class="label-status">
+                            <input type="radio" name="isActiveProductGroupEdit" id="productGroupInactiveEdit"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeEditProductGroup",
+                              ".add-edit-product-group"
+                            );
+                          }
+                        );
+                      </script> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="btnSaveProductGroupEdit">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <button id="cancelEditProductGroup" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelEditProductGroup",
+                                ".add-edit-product-group"
+                              );
+                            }
+                          );
+                        </script>
+                        <button id="showRemoveProductGroup" class="btn btn-red btn-red-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                          <span>Xóa</span>
+                        </button>
+                        <script src="./assets/js/btn_show_div.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              showDiv(
+                                "showRemoveProductGroup",
+                                ".add-remove-product-group"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script src="./assets/js/edit_remove_product-group.js"></script> -->
+
+                <!-- add-remove-product-group -->
+                <!-- <div class="add-remove-product-group">
+                <div class="mask mask-product-group">
+                  <div class="add-remove-product-group-container">
+                    <div class="add-product-group-title">
+                      <span class="remove-product-group-title">Xác nhận</span>
+                      <i id="closeRemovePriceBook-group" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeRemovePriceBook-group",
+                              ".add-remove-product-group"
+                            );
+                          }
+                        );
+                      </script>
+                    </div> -->
+
+                <!-- <div class="add-product-group-body">
+                      <div class="form-group">
+                        <p>
+                          Hệ thống sẽ xóa hoàn toàn
+                          <span>nhóm hàng</span> này. Bạn có chắc chắn?
+                        </p>
+                      </div> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="acceptproduct-groupRemove">
+                          <i class="btn-success-icon fas fa-solid fa-check"></i>
+                          <span>Đồng ý</span>
+                        </button>
+                        <button id="cancelRemovePriceBook-group" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                          <script src="./assets/js/btn_close.js"></script>
+                          <script>
+                            document.addEventListener(
+                              "DOMContentLoaded",
+                              function () {
+                                closeButton(
+                                  "cancelRemovePriceBook-group",
+                                  ".add-remove-product-group"
+                                );
+                              }
+                            );
+                          </script>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              </div>
+            </div>
+            <script src="./assets/js/btn_toggle_rotate.js"></script>
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                toggleButtonDivContent(
+                  "hideAddProductGroup",
+                  ".hide-show-product-group",
+                  ".icon-product-group"
+                );
+              });
+            </script>
+
+            <!-- inventory -->
+            <div class="em-left-content content-inventory">
+              <div class="em-left-content-title">
+                <h3 for="inventoryStatus" class="em-left-content-heading">
+                  Tồn kho
+                </h3>
+                <input id="inventoryStatus" type="text" />
+
+                <div class="em-left-content-icon icon-inventory">
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddinventory"
+                  ></i>
+                </div>
+              </div>
+
+              <div
+                class="form-group left-content-group-radio inventory-group-radio"
+              >
+                <div class="form-wrap form-wrap-radio">
+                  <label for="inventoryActiveAll" class="label-status">
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveAll"
+                      class="form-control-radio"
+                      value="true"
+                      checked
+                    />
+                    <span class="span-radio-left-content">Tất cả</span>
+                  </label>
+                  <label for="inventoryActiveBelow" class="label-status">
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveBelow"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content"
+                      >Dưới định mức tồn</span
+                    >
+                  </label>
+                  <label for="inventoryActiveExceeded" class="label-status">
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveExceeded"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content"
+                      >Vượt định mức tồn</span
+                    >
+                  </label>
+                  <label for="inventoryActiveAvailable" class="label-status">
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveAvailable"
+                      class="form-control-radio"
+                      value="true"
+                      checked
+                    />
+                    <span class="span-radio-left-content"
+                      >Còn hàng trong kho</span
+                    >
+                  </label>
+                  <label for="inventoryActiveOutOf" class="label-status">
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveOutOf"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content"
+                      >Hết hàng trong kho</span
+                    >
+                  </label>
+                  <label
+                    for="inventoryActiveAnotherChoice"
+                    class="label-status"
+                  >
+                    <input
+                      type="radio"
+                      name="isActiveInventory"
+                      id="inventoryActiveAnotherChoice"
+                      class="form-control-radio"
+                      value="false"
+                    />
+                    <span class="span-radio-left-content">Lựa chọn khác</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- location -->
+            <div class="em-left-content content-location">
+              <div class="em-left-content-title">
+                <h3 class="em-left-content-heading">Giá bán</h3>
+                <div class="em-left-content-icon icon-location">
+                  <a
+                    href="#"
+                    class="btn-icon add-group-price-book fas fa-solid fa-plus-circle"
+                    title="Thêm vị trí mới"
+                    id="addNewlocation"
+                  ></a>
+                  <script src="./assets/js/btn_show_div.js"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                      showDiv("addNewlocation", ".add-new-location");
+                    });
+                  </script>
+                  <i
+                    href="#"
+                    class="show-hide-icon fas fa-solid fa-chevron-up"
+                    id="hideAddLocation"
+                  ></i>
+                </div>
+              </div>
+
+              <div class="location-list">
+                <input
+                  type="search"
+                  id="locationListSearch"
+                  class="hide-show-location"
+                  placeholder="Giá so sánh"
+                />
+                <div id="locationListId" class="location-list-items">
+                  <ul class="form-items">
+                    <li class="form-item">
+                      <span class="item-name location-name">Giá vốn</span>
+                      <i id="showEditlocation" class="fas fa-solid fa-pen"></i>
+                    </li>
+
+                    <li class="form-item">
+                      <span class="item-name location-name"
+                        >Giá nhập lần cuối</span
+                      >
+                      <i class="fas fa-solid fa-pen"></i>
+                    </li>
+                  </ul>
+                </div>
+                <script src="./assets/js/search_input.js"></script>
+                <script src="./assets/js/toggle_list_display.js"></script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    toggleListDisplay(
+                      "locationListSearch",
+                      "locationListId",
+                      ".location-name"
+                    );
+                  });
+                </script>
+                <script src="./assets/js/search_input.js">
+                  document.addEventListener("DOMContentLoaded", function () {
+                      searchsupplier("locationListSearch", "locationListId");
+                  });
+                </script>
+
+                <script src="./assets/js/search_location_table.js"></script>
+
+                <!-- add-new-location -->
+                <!-- <div class="add-new-location">
+                <div class="mask mask-location">
+                  <div class="add-new-location-container">
+                    <div class="add-location-title">
+                      <span class="new-location-title">Thêm mới vị trí</span>
+                      <i id="closeCreatlocation" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeCreatlocation",
+                              ".add-new-location"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-location-body">
+                      <div class="form-group group-supplier-location">
+                        <label for="locationName">Tên vị trí</label>
+                        <div class="form-wrap">
+                          <input type="text" id="locationName" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-supplier-location">
+                        <label for="locationDesc">Mô tả</label>
+                        <div class="form-wrap location-area-input">
+                          <i class="location-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="locationDesc" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-supplier-location">
+                        <label for="locationActive postionInactive">Trạng thái</label>
+                        <input id="locationStatus" type="text" />
+                        <div class="form-wrap">
+                          <label for="locationActive" class="label-status">
+                            <input type="radio" name="isActivelocation" id="locationActive" class="form-control-radio"
+                              value="true" checked />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="locationInactive" class="label-status">
+                            <input type="radio" name="isActivelocation" id="locationInactive" class="form-control-radio"
+                              value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div> -->
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button onclick="onClickAddNewlocation()" class="btn btn-success btn-success-bottom"
+                          id="btnSavelocation">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <script src="./assets/js/toast.js"></script>
+                        <script src="./assets/js/creat_location.js"></script>
+                        <script src="./assets/js/add_local_storage_location.js"></script>
+                        <script src="./assets/js/show_list_location.js"></script>
+
+                        <button id="cancelCreatlocation" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelCreatlocation",
+                                ".add-new-location"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                <!-- add-edit-location -->
+                <!-- <div class="add-edit-location">
+                <div class="mask mask-location">
+                  <div class="add-edit-location-container">
+                    <div class="add-location-title">
+                      <span class="edit-location-title">Cập nhật vị trí</span>
+                      <i id="closeEditlocation" class="form-close-icon fas fa-solid fa-close"></i>
+                    </div>
+
+                    <div class="add-location-body">
+                      <div class="form-group group-supplier-location">
+                        <label for="locationNameEdit">Tên nhà cung cấp</label>
+                        <div class="form-wrap">
+                          <input type="text" id="locationNameEdit" class="form-control" required />
+                        </div>
+                      </div>
+                      <div class="form-group group-supplier-location">
+                        <label for="locationDescEdit">Mô tả</label>
+                        <div class="form-wrap location-area-input">
+                          <i class="location-icon-inside fas fa-solid fa-pen"></i>
+                          <textarea id="locationDescEdit" class="form-control" rows="1"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group group-supplier-location">
+                        <label for="locationStatusEdit">Trạng thái</label>
+                        <input type="text" name="" id="locationStatusEdit" />
+                        <div class="form-wrap">
+                          <label for="locationActiveEdit" class="label-status">
+                            <input type="radio" name="isActivelocationEdit" id="locationActiveEdit"
+                              class="form-control-radio" value="true" />
+                            <span>Hoạt động</span>
+                          </label>
+                          <label for="locationInactiveEdit" class="label-status">
+                            <input type="radio" name="isActivelocationEdit" id="locationInactiveEdit"
+                              class="form-control-radio" value="false" />
+                            <span>Ngừng hoạt động</span>
+                          </label>
+                        </div>
+                      </div>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeEditlocation",
+                              ".add-edit-location"
+                            );
+                          }
+                        );
+                      </script> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="btnSavelocationEdit">
+                          <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                          <span>Lưu</span>
+                        </button>
+                        <button id="cancelEditlocation" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                        </button>
+                        <script src="./assets/js/btn_close.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              closeButton(
+                                "cancelEditlocation",
+                                ".add-edit-location"
+                              );
+                            }
+                          );
+                        </script>
+                        <button id="showRemovelocation" class="btn btn-red btn-red-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-trash-can"></i>
+                          <span>Xóa</span>
+                        </button>
+                        <script src="./assets/js/btn_show_div.js"></script>
+                        <script>
+                          document.addEventListener(
+                            "DOMContentLoaded",
+                            function () {
+                              showDiv(
+                                "showRemovelocation",
+                                ".add-remove-location"
+                              );
+                            }
+                          );
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script src="./assets/js/edit_remove_location.js"></script> -->
+
+                <!-- add-remove-location -->
+                <!-- <div class="add-remove-location">
+                <div class="mask mask-location">
+                  <div class="add-remove-location-container">
+                    <div class="add-location-title">
+                      <span class="remove-location-title">Xác nhận</span>
+                      <i id="closeRemovelocation" class="form-close-icon fas fa-solid fa-close"></i>
+                      <script src="./assets/js/btn_close.js"></script>
+                      <script>
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            closeButton(
+                              "closeRemovelocation",
+                              ".add-remove-location"
+                            );
+                          }
+                        );
+                      </script>
+                    </div>
+
+                    <div class="add-location-body">
+                      <div class="form-group">
+                        <p>
+                          Hệ thống sẽ xóa hoàn toàn
+                          <span>vị trí</span> này. Bạn có chắc chắn?
+                        </p>
+                      </div> -->
+
+                <!-- add btn bottom -->
+                <!-- <div class="add-btn-bottom">
+                        <button class="btn btn-success btn-success-bottom" id="acceptlocationRemove">
+                          <i class="btn-success-icon fas fa-solid fa-check"></i>
+                          <span>Đồng ý</span>
+                        </button>
+                        <button id="cancelRemovelocation" class="btn btn-default btn-default-bottom">
+                          <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                          <span>Bỏ qua</span>
+                          <script src="./assets/js/btn_close.js"></script>
+                          <script>
+                            document.addEventListener(
+                              "DOMContentLoaded",
+                              function () {
+                                closeButton(
+                                  "cancelRemovelocation",
+                                  ".add-remove-location"
+                                );
+                              }
+                            );
+                          </script>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              </div>
+            </div>
+            <script src="./assets/js/btn_toggle_rotate.js"></script>
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                toggleButtonDivContent(
+                  "hideAddLocation",
+                  ".hide-show-location",
+                  ".icon-location"
+                );
+              });
+            </script>
+
+            <!-- aside -->
+            <aside class="em-left-pageside">
+              <label for="numberOfRecordsPriceBook">Số bản ghi:</label>
+              <select
+                class="number-of-records"
+                id="numberOfRecordsPriceBook"
+                name="Số bản ghi:"
+              >
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </aside>
+          </div>
+
+          <!-- body right -->
+          <div class="price-book-main-right">
+            <div class="price-book-right-header">
+
+              <!-- header filter buttons -->
+              <div class="header-filter-buttons">
+                <ul class="header-filter-button-items">
+                  <li class="header-filter-button-item">
+                    <button class="btn-success" id="" data-action="exportFile">
+                      <i class="btn-icon fas fa-solid fa-file-export"></i>
+                      <span>Xuất file</span>
+                    </button>
+                  </li>
+
+                  <li class="header-filter-button-item">
+                    <button class="btn-success k-link">
+                      <i class="btn-icon fas fa-solid fa-list"></i>
+                      <span></span>
+                      <i class="btn-icon fas fa-solid fa-caret-down"></i>
+                    </button>
+                    <ul class="">
+                      <li class="">
+                        <div
+                          class="animation-container animation-container-price-book"
+                          id="animationContainerPriceBook"
+                        >
+                          <label class="container-check-box check-box-menu"
+                            >Mã hàng
+                            <input
+                              id="containerCheckBoxPriceBookCode"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tên hàng
+                            <input
+                              id="containerCheckBoxPriceBookName"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Tồn kho
+                            <input
+                              id="containerCheckBoxInventory"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Giá vốn
+                            <input
+                              id="containerCheckBoxCostPriceBook"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="container-check-box check-box-menu"
+                            >Giá nhập cuối
+                            <input
+                              id="containerCheckBoxLastEntryPriceBook"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="container-check-box check-box-menu"
+                            >Giá chung
+                            <input
+                              id="containerCheckBoxGeneralPriceBook"
+                              type="checkbox"
+                              checked="checked"
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+                    <script src="./assets/js/hide_show_table.js"></script>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- table price-books -->
+            <div class="table-container">
+              <table class="price-book-table-list">
+                <thead class="table-header">
+                  <tr class="table-row-header">
+                    <th
+                      class="price-book-code"
+                      for="containerCheckBoxPriceBookCode"
+                    >
+                      Mã hàng
+                    </th>
+                    <th
+                      class="price-book-name"
+                      for="containerCheckBoxPriceBookName"
+                    >
+                      Tên hàng
+                    </th>
+                    <th class="inventory-price-book" for="containerCheckBoxInventory">
+                      Tồn kho
+                    </th>
+                    <th
+                      class="cost-price-book"
+                      for="containerCheckBoxCostPriceBook"
+                    >
+                      Giá vốn
+                    </th>
+                    <th
+                      class="last-entry-price-book"
+                      for="containerCheckBoxLastEntryPriceBook"
+                    >
+                      Giá nhập cuối
+                    </th>
+                    <th
+                      id="generalPriceBook"
+                      class="general-price-book"
+                      for="containerCheckBoxGeneralPriceBook"
+                    >
+                      Giá chung
+                    </th>
+                  </tr>
+                  <tr class="k-filter-row">
+                    <th class="price-book-code"
+                    for="containerCheckBoxPriceBookCode">
+                      <!-- table filter search -->
+              <div class="table-filter-search">
+                <div
+                  class="input-group input-group-search-price-book-code"
+                  id="groupInputSearchPriceBookCode"
+                >
+                  <input
+                    type="text"
+                    name=""
+                    id="searchPriceBookCode"
+                    class="form-control"
+                    placeholder="Tìm mã hàng"
+                  />
+                  <script src="./assets/js/search_price_book_code_name.js"></script>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      searchCodeName("searchPriceBookCode", ".table-row-data", ".price-book-code");
+                    });
+                  </script>
+                </div>
+              </div>
+                    </th>
+                    <th class="price-book-name"
+                    for="containerCheckBoxPriceBookName">
+                    <div class="table-filter-search">
+                      <div
+                        class="input-group input-group-search-price-book-name"
+                        id="groupInputSearchPriceBookName"
+                      >
+                        <input
+                          type="text"
+                          name=""
+                          id="searchPriceBookName"
+                          class="form-control"
+                          placeholder="Tìm tên hàng"
+                        />
+                        <script src="./assets/js/search_price_book_code_name.js"></script>
+                        <script>
+                          document.addEventListener("DOMContentLoaded", function() {
+                            searchCodeName("searchPriceBookName", ".table-row-data", ".price-book-name");
+                          });
+                        </script>
+                      </div>
+                    </div>
+                    </th>
+                    <th class="inventory-price-book" for="containerCheckBoxInventory"></th>
+                    <th class="cost-price-book" for="containerCheckBoxCostPriceBook"></th>
+                    <th class="last-entry-price-book" for="containerCheckBoxLastEntryPriceBook"></th>
+                    <th class="general-price-book" for="containerCheckBoxGeneralPriceBook"></th>
+                  </tr>
+                </thead>
+                <tbody id="priceBookListId" class="table-body"></tbody>
+                <script src="./assets/js/btn_show_div.js"></script>
+                <script src="./assets/js/creat_product.js"></script>
+                <script src="./assets/js/check_HTML_tags.js"></script>
+                <script src="./assets/js/show_list_price_book.js"></script>
+              </table>
+            </div>
+
+<!-- add-update-price-book -->
+<div class="add-update-price-book" id="addUpdatePriceBook">
+  <div class="update-price-book-title">
+      
+      <div class="select-price-book-attribute-calculation">
+        <div class="table-title-price-book">Giá mới [<span id="priceUpdateForm"></span>]</div>
+        <div class="row-data-price-book">
+          <div class="update-price-book-input-icon">
+              <input id="priceBookAttribute" type="search" placeholder="Giá hiện tại" class="form-control form-control-price-book-attribute">
+              <i class="update-price-book-icon fas fa-solid fa-caret-down"></i>
+          </div>
+          <!-- price toggle -->
+          <label for="priceBookAttribute" class="price-toggle">
+            <div class="btn-price-operation-toggle">
+              <button class="btn btn-addition btn-success">
+                <span>+</span>
+              </button>
+              <button class="btn btn-subtraction btn-default">
+                <span>-</span>
+              </button>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="select-price-book-method">
+        <div class="row-data-price-book">
+          <input id="priceBookMethod" type="text" class="form-control form-control-price-book-method">
+          <!-- price toggle -->
+          <label for="priceBookMethod" class="price-toggle">
+            <div class="btn-price-unit-toggle">
+              <button class="btn btn-VND btn-default">
+                <span>VND</span>
+              </button>
+              <button class="btn btn-percent btn-success">
+                <span>%</span>
+              </button>
+            </div>
+          </label>
+        </div>
+      </div>
+  </div>
+
+  <div class="update-price-book-body">
+    <div class="form-group">
+      <label class="container-check-box check-box-menu-type"
+            >
+            Áp dụng công thức cho <span id="updateQuantityPriceBook"></span> sản phẩm trong bảng giá?
+            <input
+              id="containerCheckBoxCommodityProduct"
+              type="checkbox"
+              checked="checked"
+            />
+            <span class="checkmark"></span>
+          </label>
+    </div>
+
+    <!-- add btn bottom -->
+    <div class="add-btn-bottom comfirmation-update-price-book">
+      <button
+        class="btn btn-success btn-success-bottom"
+        id="acceptPriceBookUpdate"
+      >
+        <i class="btn-success-icon fas fa-solid fa-check"></i>
+        <span>Đồng ý</span>
+      </button>
+      <button
+        id="cancelUpdatePriceBook"
+        class="btn btn-default btn-default-bottom"
+      >
+        <i class="btn-success-icon fas fa-solid fa-ban"></i>
+        <span>Bỏ qua</span>
+      </button>
+      <script src="./assets/js/btn_close.js"></script>
+      <script>
+        document.addEventListener(
+          "DOMContentLoaded",
+          function () {
+            closeButton(
+              "cancelUpdatePriceBook",
+              ".add-update-price-book"
+            );
+          }
+        );
+      </script>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <script src="./assets/js/sort_content_table_price-book.js"></script> -->
+    <script src="./assets/js/pointer_focus.js"></script>
+    <script src="./assets/js/format_number_input.js"></script>
+    <script src="./assets/js/update_price_book.js"></script>
+    <script src="./assets/js/btn_toggle_success_default.js"></script>
+    <script src="./assets/js/method_add_sub_VND_percent.js"></script>
+    <script src="./assets/js/update_quantity_price_book.js"></script>
+    <script src="./assets/js/select_number_of_records_price_book.js"></script>
+    <script src="./assets/js/to_top.js"></script>
+
+    <div id="toast"></div>
+    <script src="./assets/js/toast.js"></script>
+  </body>
+</html>

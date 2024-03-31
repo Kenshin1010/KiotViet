@@ -1,0 +1,48 @@
+
+.update-price-book-title{
+  font-size: 15px;
+  font-weight: 700;
+  padding-left: 28px;
+  height: 62px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.update-price-book-title span{
+  color: #15171a;
+}
+
+.update-price-book-title i{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16px;
+  padding: 16px;
+}
+
+.update-price-book-body{
+  padding: 0 28px;
+  padding-bottom: 28px;
+}
+
+.update-price-book-body .form-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.update-price-book-body .form-group p{
+  font-size: 15px;
+  color: #15171a;
+}
+
+.update-price-book-body .form-wrap{
+  min-width: 314px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}

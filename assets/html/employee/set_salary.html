@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiết lập lương</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png" />
+    <link rel="icon" href="./assets/img/favicon.png" fetchpriority="high" />
+    <script src="https://kit.fontawesome.com/272317828a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/employee.css" />
+    <link rel="stylesheet" href="./assets/css/check_box.css" />
+    <link rel="stylesheet" href="./assets/css/add_employee.css" />
+    <link rel="stylesheet" href="./assets/css/set_salary.css" />
+</head>
+
+<body>
+    <!-- set salary -->
+    <div class="set-salary">
+
+        <!-- set salary container -->
+        <div class="set-salary-container">
+            <div class="pay-rate">
+                <div class="pay-rate-group">
+
+                    <!-- pay rate header -->
+                    <div class="pay-rate-group-head header">
+                        <div class="pay-rate-group-head-title header-title">
+                            <i class="pay-rate-group-icon fas fa-solid fa-money-check-dollar"></i>
+                            <span class="span-heading">Nhân viên</span>
+                        </div>
+
+                        <!-- pay content -->
+                        <div class="pay-content">
+                            <div class="pay-rate-select-content">
+                                <label class="form-label" for="salaryType">Loại lương</label>
+                                <div class="form-label-icon">
+                                    <select class="salary-type form-select" name="salary-type" id="salaryType"
+                                        aria-placeholder="---Chọn loại lương---">
+                                        <option value="salaryDefault">---Chọn loại lương---</option>
+                                        <option value="workShift">Theo ca làm việc</option>
+                                        <option value="workingHour">Theo giờ làm việc</option>
+                                        <option value="workingDay">Theo ngày công chuẩn</option>
+                                        <option value="fixedSalary">Cố định</option>
+                                    </select>
+                                    <i class="salary-type-icon  fa fa-solid fa-circle-info"></i>
+                                </div>
+                            </div>
+
+                            <div class="pay-rate-select-content">
+                                <label class="form-label" for="salaryRate">Mức lương</label>
+                                <div class="form-label-icon">
+                                    <input class="salary-rate form-input" name="salary-rate" id="salaryRate">
+                                    </input>
+                                    <span class="form-span salary-rate-span">/kỳ lương</span>
+                                    <i class="salary-rate-icon fa fa-solid fa-ellipsis-v"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pay rate standard -->
+                    <div class="pay-rate-standard">
+                        <div class="pay-set-salary-rate-standard">
+                            <label for="btnToggleStandard" class="toggle-standard">Lương làm thêm giờ</label>
+                            <button class="btn-toggle btn-toggle-standard" id="btnToggleStandard">
+                                <i class="btn-toggle-icon fas fa-solid fa-circle"></i>
+                            </button>
+                        </div>
+
+                        <!-- table overtime salary-->
+                        <div class="table-salary-container">
+                            <table class="employee-table-list table-salary">
+                                <thead class="table-header-salary">
+                                    <tr class="table-row-header-salary">
+                                        <th class="table-title-salary"></th>
+                                        <th class="weekdays"><span>Ngày thường</span></th>
+                                        <th class="saturday"><span>Thứ 7</span></th>
+                                        <th class="sunday"><span>Chủ nhật</span></th>
+                                        <th class="day-off"><span>Ngày nghỉ</span></th>
+                                        <th class="holidays"><span>Ngày lễ tết</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body">
+                                    <tr class="table-row-data-salary">
+                                        <td class="table-title-salary"><span>Hệ số lương trên giờ</span></td>
+                                        <td class="weekdays">
+                                            <div class="row-data-salary">
+                                                <input id="priceWeekDays" type="number" placeholder="150"
+                                                    class="hide-spinner">
+                                                <!-- price toggle -->
+                                                <label for="priceWeekDays" class="price-toggle">
+                                                    <div class="btn-price-toggle">
+                                                        <button class="btn btn-VND btn-default">
+                                                            <span>VND</span>
+                                                        </button>
+                                                        <button class="btn btn-percent btn-success">
+                                                            <span>%</span>
+                                                        </button>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="saturday">
+                                            <div class="row-data-salary">
+                                                <input id="saturday" type="number" placeholder="200"
+                                                    class="hide-spinner">
+                                                <!-- price toggle -->
+                                                <label for="priceSaturday" class="price-toggle">
+                                                    <div class="btn-price-toggle">
+                                                        <button class="btn btn-VND btn-default">
+                                                            <span>VND</span>
+                                                        </button>
+                                                        <button class="btn btn-percent btn-success">
+                                                            <span>%</span>
+                                                        </button>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="sunday">
+                                            <div class="row-data-salary">
+                                                <input id="priceSunday" type="number" placeholder="200"
+                                                    class="hide-spinner">
+                                                <!-- price toggle -->
+                                                <label for="priceSunday" class="price-toggle">
+                                                    <div class="btn-price-toggle">
+                                                        <button class="btn btn-VND btn-default">
+                                                            <span>VND</span>
+                                                        </button>
+                                                        <button class="btn btn-percent btn-success">
+                                                            <span>%</span>
+                                                        </button>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="day-off">
+                                            <div class="row-data-salary">
+                                                <input id="priceDayOff" type="number" placeholder="200"
+                                                    class="hide-spinner">
+                                                <!-- price toggle -->
+                                                <label for="priceDayOff" class="price-toggle">
+                                                    <div class="btn-price-toggle">
+                                                        <button class="btn btn-VND btn-default">
+                                                            <span>VND</span>
+                                                        </button>
+                                                        <button class="btn btn-percent btn-success">
+                                                            <span>%</span>
+                                                        </button>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="holidays">
+                                            <div class="row-data-salary">
+                                                <input id="priceHolidays" type="number" placeholder="300"
+                                                    class="hide-spinner">
+                                                <!-- price toggle -->
+                                                <label for="priceHolidays" class="price-toggle">
+                                                    <div class="btn-price-toggle">
+                                                        <button class="btn btn-VND btn-default">
+                                                            <span>VND</span>
+                                                        </button>
+                                                        <button class="btn btn-percent btn-success">
+                                                            <span>%</span>
+                                                        </button>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pay update -->
+                <div class="pay-rate-update">
+                    <button id="btnCreatTemplate" class="btn btn-success">
+                        <i class="btn-success-icon fas fa-solid fa-plus"></i>
+                        <span>Tạo mới mẫu lương</span>
+                    </button>
+
+                    <span>Hoặc</span>
+
+                    <div class="pay-rate-form">
+                        <label class="form-label" for="rateType"></label>
+                        <div class="form-label-select">
+                            <select class="form-rate-type form-select" name="rate-type" id="rateType"
+                                aria-placeholder="Chọn mẫu lương hiện có">
+                                <option value="payDefault">Chọn mẫu lương hiện có</option>
+                                <option value="rateDefault">Nhân viên chính thức</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- add employee bottom -->
+            <div class="add-employee-bottom">
+                <button class="btn btn-success btn-success-bottom">
+                    <i class="btn-success-icon fas fa-solid fa-floppy-disk"></i>
+                    <span>Lưu</span>
+                </button>
+                <button class="btn btn-default btn-default-bottom">
+                    <i class="btn-success-icon fas fa-solid fa-ban"></i>
+                    <span>Bỏ qua</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+.set-salary {
+  width: 1130px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.set-salary-container {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0 28px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* pay rate heading */
+.pay-rate-group-head {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.pay-rate-group-head-title {
+  padding: 20px;
+}
+
+.pay-rate-group-head-title i {
+  color: #0090da;
+}
+
+.pay-rate-group-head-title span {
+  margin-left: 13px;
+  font-weight: 600;
+  color: #121212;
+  line-height: 15px;
+}
+
+/* pay content */
+.pay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.pay-content-select{
+  width: 100%;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pay-rate-select-content {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.pay-rate-select-content .form-label,
+.form-span {
+  font-size: 13px;
+  color: #15171a;
+}
+
+.pay-rate-select-content .form-label {
+  flex: 0 0 28%;
+  width: 130px;
+  font-weight: 600;
+  padding-top: 7px;
+  padding-right: 5px;
+}
+
+.form-label-icon {
+  flex: 0 0 72%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.salary-type-icon {
+  margin-top: 7px;
+  margin-right: auto;
+}
+
+.salary-rate-span {
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.pay-rate-select-content .form-input,
+.form-select {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #959595;
+  padding: 7px 0;
+}
+
+.pay-rate-select-content .form-input {
+  text-align: right;
+}
+
+.pay-rate-select-content .form-select:focus {
+  border-bottom: 2px solid #00b63e;
+}
+
+.pay-rate-select-content .form-input:focus {
+  border-bottom: 2px solid #00b63e;
+}
+
+.pay-rate-select-content .salary-type {
+  min-width: 294px;
+}
+
+.pay-rate-select-content .salary-rate {
+  width: 120px;
+}
+
+/* pay rate standard */
+.pay-rate-standard {
+  background-color: #fff;
+  margin-bottom: 40px;
+}
+
+.pay-set-salary-rate-standard {
+  width: 100%;
+  height: 66px;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-standard {
+  font-size: 13px;
+  color: #15171a;
+  font-weight: 600;
+  padding-top: 7px;
+  padding-right: 5px;
+}
+
+.btn-toggle-standard {
+  background-color: #d7d7d7;
+  border: 2px solid #d7d7d7;
+  color: #666;
+  width: 45px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 99px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.btn-toggle-standard.active {
+  background-color: #2e94da;
+  border: 2px solid #2e94da;
+  color: #666;
+  width: 45px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 99px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.btn-toggle-standard i {
+  font-size: 22px;
+  color: #fff;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* table overtime salary */
+.table-salary-application {
+  font-size: 13px;
+  color: #15171a;
+  display: none;
+}
+
+.table-salary {
+  width: 1044px;
+}
+
+.table-row-header-salary {
+  height: 40px;
+}
+
+.table-row-header-salary {
+}
+
+.table-row-header-salary th {
+  max-width: 153px;
+}
+
+.table-title-salary {
+  max-width: 173px;
+  padding-left: 14px;
+}
+
+.table-row-data-salary td label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-row-data-salary td input {
+  max-width: 65px;
+}
+
+.row-data-salary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.row-data-salary input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #959595;
+  text-align: right;
+  padding: 7px 0;
+}
+
+.row-data-salary input:focus {
+  border-bottom: 1px solid #00b63e;
+}
+
+/* table commission application */
+.table-commission-application{
+  /* display: none; */
+}
+
+/* table allowance application */
+.table-allowance-application{
+  /* display: none; */
+}
+
+/* table decrease application */
+.table-decrease-application{
+  /* display: none; */
+}
+
+/* hide spinner for input number */
+.hide-spinner::-webkit-inner-spin-button,
+.hide-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0; /* hide space after button input */
+}
+
+/* price toggle */
+.btn-price-toggle {
+    margin-left: 8px;
+}
+
+.btn-VND, .btn-percent{
+    min-width: 28px;
+    padding: 0 5px;
+    margin-left: 3px;
+    font-size: 13px;
+    line-height: 25px;
+    border: none;
+}
+
+/* pay update */
+.pay-rate-update {
+    background-color: #fff;
+  width: 100%;
+  height: 160px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-rate-update:hover{
+  border: 1px solid #00b63e;
+}
+
+.pay-rate-update button {
+  font-size: 13px;
+  line-height: 20px;
+  padding: 8px 20px;
+}
+
+.pay-rate-update span {
+    font-size: 13px;
+  margin-left: 10px;
+}
+
+.pay-rate-form {
+    margin-left: 10px;
+}
+
+.pay-rate-form .form-rate-type:focus{
+  border-bottom: 1px solid #00b63e;
+}
